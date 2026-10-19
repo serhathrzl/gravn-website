@@ -1,0 +1,20 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'link';
+  arrow?: 'up-right' | 'right' | false;
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+}
+const { variant = 'primary', arrow = 'up-right', href, class: className, type = 'button' } = Astro.props;
+const Tag = href ? 'a' : 'button';
+const d = arrow === 'right' ? 'M4 12h15M13 6l6 6-6 6' : 'M7 17 17 7M9 7h8v8';
+---
+<Tag href={href} type={href ? undefined : type} class:list={['gv-btn', `gv-btn--${variant}`, className]}>
+  <span class="gv-btn-label"><slot /></span>
+  {arrow && (
+    <svg viewBox="0 0 24 24" class="gv-arrow" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+      <path d={d} />
+    </svg>
+  )}
+</Tag>

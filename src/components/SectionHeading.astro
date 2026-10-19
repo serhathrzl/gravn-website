@@ -1,0 +1,19 @@
+---
+import Eyebrow from './Eyebrow.astro';
+interface Props {
+  eyebrow?: string;
+  index?: string;
+  size?: 'section' | 'display';
+  align?: 'split' | 'stacked';
+  as?: 'h1' | 'h2';
+  class?: string;
+}
+const { eyebrow, index, size = 'section', align = 'split', as: Tag = 'h2', class: className } = Astro.props;
+---
+<header class:list={['gv-section-heading', align === 'stacked' && 'is-stacked', className]}>
+  <div class="gv-section-heading-main">
+    {eyebrow && <Eyebrow index={index}>{eyebrow}</Eyebrow>}
+    <Tag class:list={['gv-section-title', size === 'display' && 'is-display']}><slot name="title" /></Tag>
+  </div>
+  {Astro.slots.has('intro') && <p class="gv-section-intro"><slot name="intro" /></p>}
+</header>

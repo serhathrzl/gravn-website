@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+---
+<Base
+  title="GRAVN Consulting – Websites, Marketing und KI für wachsende Marken"
+  description="Wir bauen Websites, machen Marken sichtbar und nehmen dir Routine ab. Drei Disziplinen, ein Ansprechpartner."
+>
+  <section class="hero section">
+    <div class="container">
+      <p class="eyebrow">Websites / Marketing / AI</p>
+      <h1 class="display">Digital denken.<br />Mehr bewegen<span class="gv-accent">.</span></h1>
+      <div class="hero-lower">
+        <div>
+          <p class="lead">Wir entwickeln Websites, bringen deine Marke in die Sichtbarkeit und automatisieren, was dich Zeit kostet. Für Gründer, Selbstständige und kleine Teams.</p>
+          <div class="hero-actions">
+            <Button href="/kontakt">Projekt besprechen</Button>
+            <Button variant="link" href="#leistungen">Leistungen entdecken</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="leistungen" aria-labelledby="leistungen-title">
+    <div class="container">
+      <SectionHeading index="01" eyebrow="Unsere Expertise">
+        <Fragment slot="title"><span id="leistungen-title">Drei Disziplinen.<br />Ein klarer Anspruch.</span></Fragment>
+        <Fragment slot="intro">Jede Disziplin steht für sich. Zusammen sparen sie dir Abstimmung und bringen mehr Wirkung.</Fragment>
+      </SectionHeading>
+      <div class="grid-3">
+        <ServiceCard index="01" title="Websites & digitale Erlebnisse" text="Websites, die nicht nur gut aussehen, sondern dein Business voranbringen." tags={['Design', 'Entwicklung', 'Optimierung']} href="/websites">
+          <svg slot="visual" class="service-visual" viewBox="0 0 400 300" fill="none" stroke="var(--text)" stroke-width="1" aria-hidden="true" focusable="false">
+            <rect x="60" y="50" width="220" height="150" />
+            <rect x="100" y="80" width="220" height="150" />
+            <rect x="140" y="110" width="200" height="130" />
+            <path d="M140 140H340M140 110V140M180 110V140" />
+            <path d="M170 170H290M170 190H250" />
+          </svg>
+        </ServiceCard>
+        <ServiceCard index="02" title="Marketing & Social Media" text="Wir machen sichtbar, was dich ausmacht, und sorgen dafür, dass die Richtigen es sehen." tags={['Strategie', 'Inhalte', 'Kanäle']} href="/marketing">
+          <svg slot="visual" class="service-visual" viewBox="0 0 400 300" fill="none" stroke="var(--text)" stroke-width="1" aria-hidden="true" focusable="false">
+            <circle cx="120" cy="150" r="6" fill="var(--text)" />
+            <path d="M160 110A56 56 0 0 1 160 190M200 80A100 100 0 0 1 200 220M240 50A144 144 0 0 1 240 250" />
+          </svg>
+        </ServiceCard>
+        <ServiceCard index="03" title="KI & Automatisierung" text="Weniger Routine. Mehr Zeit für dein Business." tags={['Workflows', 'Assistenten', 'Beratung']} href="/ki-automatisierung" visualTone="inverse">
+          <svg slot="visual" class="service-visual" viewBox="0 0 400 300" fill="none" stroke="var(--text-inverse)" stroke-width="1" aria-hidden="true" focusable="false">
+            <rect x="60" y="120" width="50" height="50" />
+            <rect x="175" y="60" width="50" height="50" />
+            <rect x="175" y="190" width="50" height="50" />
+            <rect x="290" y="120" width="50" height="50" />
+            <path d="M110 145H140V85H175M140 145V215H175M225 85H258V145H290M225 215H258V145" />
+          </svg>
+        </ServiceCard>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-theme="dark" aria-labelledby="zusammen-title">
+    <div class="container">
+      <SectionHeading index="02" eyebrow="Zusammen">
+        <Fragment slot="title"><span id="zusammen-title">Gut für sich.<br />Besser zusammen.</span></Fragment>
+        <Fragment slot="intro">Viele Projekte beginnen mit einer Website. Dann kommt die Frage, wie dich die Richtigen finden. Später die, wie du dir Routine sparst. Bei uns baut das eine auf dem anderen auf, ohne Brüche und ohne neue Ansprechpartner.</Fragment>
+      </SectionHeading>
+      <ol class="grid-3" style="padding:0;list-style:none">
+        <ProcessStep number="01" title="Auftritt aufbauen" text="Eine Website, die zu dir passt." />
+        <ProcessStep number="02" title="Sichtbarkeit schaffen" text="Inhalte und Kanäle, die dich zeigen." />
+        <ProcessStep number="03" title="Abläufe entlasten" text="KI und Automatisierung, wo sie sich lohnen." />
+      </ol>
+      <p class="note">Das ist ein Beispielweg, keine Pflicht. Du kannst mit jeder Disziplin einzeln starten.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="ablauf-title">
+    <div class="container">
+      <SectionHeading index="03" eyebrow="So arbeiten wir">
+        <Fragment slot="title"><span id="ablauf-title">Klar im Ablauf.<br />Offen im Austausch.</span></Fragment>
+      </SectionHeading>
+      <ol class="grid-4">
+        <ProcessStep number="01" title="Verstehen" text="Wir hören zu und klären Ziel, Zielgruppe und Rahmen." />
+        <ProcessStep number="02" title="Konzipieren" text="Wir skizzieren den Weg und besprechen ihn mit dir." />
+        <ProcessStep number="03" title="Umsetzen" text="Wir bauen, testen und zeigen dir Zwischenstände." />
+        <ProcessStep number="04" title="Weiterentwickeln" text="Wir lernen aus der Praxis und verbessern gemeinsam." />
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="about-title" style="padding-top:0">
+    <div class="container">
+      <SectionHeading index="04" eyebrow="Über uns">
+        <Fragment slot="title"><span id="about-title">Ein Studio.<br />Drei Disziplinen.</span></Fragment>
+      </SectionHeading>
+      <p class="about-text"><span class="placeholder">Platzhalter: 2 Sätze zu uns – wer, warum, Haltung</span></p>
+      <Button variant="link" href="/ueber-uns">Mehr über uns</Button>
+    </div>
+  </section>
+
+  <section class="section" data-theme="dark" aria-labelledby="cta-title">
+    <div class="container cta-block">
+      <p class="gv-eyebrow" style="margin-bottom:var(--space-6)"><span class="gv-eyebrow-index">05</span><span aria-hidden="true"> / </span>Kontakt</p>
+      <h2 class="display-cta" id="cta-title">Was hast du vor<span class="gv-accent">?</span></h2>
+      <p class="lead">Erzähl uns in ein paar Sätzen von deinem Projekt. Wir melden uns persönlich.</p>
+      <Button href="/kontakt">Projekt besprechen</Button>
+    </div>
+  </section>
+</Base>

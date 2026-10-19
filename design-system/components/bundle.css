@@ -1,0 +1,97 @@
+/* GRAVN components — reads only tokens.css custom properties. */
+:root { --gv-ease: cubic-bezier(.2, 0, 0, 1); --gv-dur: 180ms; }
+@media (prefers-reduced-motion: reduce) { :root { --gv-dur: 0ms; } }
+
+.gv-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.gv-arrow { width: 18px; height: 18px; flex: none; transition: transform var(--gv-dur) var(--gv-ease); }
+
+/* Logo */
+.gv-logo { display: inline-flex; flex-direction: column; align-items: flex-start; gap: calc(var(--gv-logo-h) * .32); color: var(--text); text-decoration: none; line-height: 0; }
+.gv-logo .gv-wordmark { height: var(--gv-logo-h); width: auto; display: block; }
+.gv-logo .gv-mark { height: var(--gv-logo-h); width: var(--gv-logo-h); display: block; }
+.gv-logo-descriptor { font-family: var(--font-mono); font-size: max(8px, calc(var(--gv-logo-h) * .34)); line-height: 1; letter-spacing: .42em; text-transform: uppercase; color: var(--text-secondary); padding-left: 1px; }
+a.gv-logo:focus-visible { outline: 2px solid var(--focus); outline-offset: 6px; }
+
+/* Button */
+.gv-btn { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-6); min-height: var(--control-height); padding: 0 var(--space-5); border: var(--hairline) solid transparent; border-radius: var(--radius-none); font: 450 15px/20px var(--font-sans); letter-spacing: -.005em; text-decoration: none; cursor: pointer; transition: background-color var(--gv-dur) var(--gv-ease), color var(--gv-dur) var(--gv-ease), border-color var(--gv-dur) var(--gv-ease); }
+.gv-btn--primary { background: var(--action); color: var(--on-action); }
+.gv-btn--primary:hover { background: color-mix(in srgb, var(--action) 84%, var(--surface)); }
+.gv-btn--secondary { background: transparent; color: var(--text); border-color: var(--line-strong); }
+.gv-btn--secondary:hover { border-color: var(--text); }
+.gv-btn--link { min-height: var(--control-height); padding: 0; gap: var(--space-3); background: none; color: var(--text); }
+.gv-btn--link .gv-btn-label { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size var(--gv-dur) var(--gv-ease); }
+.gv-btn--link:hover .gv-btn-label { background-size: 100% 1px; }
+.gv-btn--link:hover .gv-arrow, .gv-btn--secondary:hover .gv-arrow { color: var(--accent); }
+.gv-btn:hover .gv-arrow { transform: translate(2px, -2px); }
+.gv-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+/* Eyebrow */
+.gv-eyebrow-index { color: var(--accent); }
+.gv-eyebrow { margin: 0; font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+
+/* Section heading */
+.gv-section-heading { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-6); align-items: end; container-type: inline-size; }
+.gv-section-heading.is-stacked { grid-template-columns: 1fr; }
+.gv-section-heading-main { display: grid; gap: var(--space-5); }
+.gv-section-title { margin: 0; font: 350 56px/60px var(--font-sans); letter-spacing: -.035em; color: var(--text); text-wrap: balance; }
+.gv-section-title.is-display { font-size: 91px; line-height: 97px; letter-spacing: -.045em; }
+.gv-section-intro { margin: 0; max-width: var(--measure); font: 400 16px/24px var(--font-sans); color: var(--text-secondary); }
+@container (max-width: 720px) {
+  .gv-section-heading { grid-template-columns: 1fr; }
+  .gv-section-title { font-size: 36px; line-height: 40px; }
+  .gv-section-title.is-display { font-size: 47px; line-height: 51px; }
+}
+
+/* Service card */
+.gv-service { display: grid; gap: var(--space-3); padding-bottom: var(--space-5); border-bottom: var(--hairline) solid var(--line); position: relative; }
+.gv-service-visual { aspect-ratio: 4 / 3; background: var(--surface-raised); margin-bottom: var(--space-4); overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; }
+.gv-service-visual.is-inverse { background: var(--surface-inverse); color: var(--text-inverse); }
+.gv-service-index { margin: 0; font: 400 11px/16px var(--font-mono); letter-spacing: .14em; color: var(--accent); }
+.gv-service-title { margin: 0; display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); font: 400 28px/32px var(--font-sans); letter-spacing: -.02em; color: var(--text); }
+.gv-service-link { color: inherit; text-decoration: none; }
+a.gv-service-link::after { content: ""; position: absolute; inset: 0; }
+.gv-service-link:focus-visible { outline: none; }
+.gv-service:focus-within { outline: 2px solid var(--focus); outline-offset: 6px; }
+.gv-service:hover .gv-arrow { transform: translate(2px, -2px); color: var(--accent); }
+.gv-service-title .gv-arrow { width: 22px; height: 22px; margin-top: 4px; }
+.gv-service-text { margin: 0; max-width: 34ch; font: 400 16px/24px var(--font-sans); color: var(--text-secondary); }
+.gv-service-tags { margin: var(--space-4) 0 0; font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+
+/* Process step */
+.gv-step { list-style: none; display: grid; gap: var(--space-4); padding-top: var(--space-6); border-top: var(--hairline) solid var(--line); }
+.gv-step-number { font: 250 64px/64px var(--font-sans); letter-spacing: -.04em; color: var(--text); margin-bottom: var(--space-4); }
+.gv-step-title { margin: 0; font: 400 21px/28px var(--font-sans); letter-spacing: -.01em; color: var(--text); }
+.gv-step-text { margin: 0; font: 400 15px/23px var(--font-sans); color: var(--text-secondary); max-width: 30ch; }
+
+/* Header */
+.gv-header { background: var(--surface); color: var(--text); border-bottom: var(--hairline) solid var(--line); container-type: inline-size; }
+.gv-header-bar { display: flex; align-items: center; gap: var(--space-6); min-height: var(--header-height); padding: 0 var(--space-8); }
+.gv-header-nav { display: flex; gap: var(--space-7); margin-left: auto; }
+.gv-nav-link { font: 400 14px/20px var(--font-sans); color: var(--text); text-decoration: none; padding: var(--space-3) 0; background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 0 1px no-repeat; transition: background-size var(--gv-dur) var(--gv-ease); }
+.gv-nav-link:hover, .gv-nav-link[aria-current="page"] { background-size: 100% 1px; }
+.gv-nav-link[aria-current="page"] { background-image: linear-gradient(var(--accent), var(--accent)); }
+.gv-nav-link:focus-visible, .gv-menu-link:focus-visible, .gv-header-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.gv-header-toggle { display: none; margin-left: auto; width: var(--control-height); height: var(--control-height); background: none; border: 0; color: var(--text); cursor: pointer; padding: 12px; }
+.gv-header-toggle svg { width: 24px; height: 24px; display: block; }
+.gv-header-menu { display: grid; gap: var(--space-2); padding: var(--space-4) var(--space-5) var(--space-6); border-top: var(--hairline) solid var(--line); }
+.gv-header-menu[hidden] { display: none; }
+.gv-menu-link { font: 350 36px/48px var(--font-sans); letter-spacing: -.03em; color: var(--text); text-decoration: none; }
+.gv-header-menu .gv-btn { margin-top: var(--space-5); }
+@container (min-width: 768px) { .gv-header-menu { display: none !important; } }
+@container (max-width: 767px) {
+  .gv-header-bar { min-height: 64px; padding: 0 var(--space-5); }
+  .gv-header-nav, .gv-header-cta { display: none; }
+  .gv-header-toggle { display: block; margin-right: -12px; }
+}
+
+/* Accent mark: wrap one word or the closing period of a headline */
+.gv-accent { color: var(--accent); }
+
+/* Footer */
+.gv-footer { background: var(--surface); color: var(--text); padding: var(--space-8) var(--space-8) var(--space-6); border-top: var(--hairline) solid var(--line); }
+.gv-footer-mark .gv-wordmark { width: 100%; height: auto; display: block; }
+.gv-footer-row { display: flex; justify-content: space-between; gap: var(--space-5); margin-top: var(--space-7); font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+.gv-footer-legal { display: flex; gap: var(--space-6); }
+.gv-footer-legal a { color: inherit; text-decoration: none; }
+.gv-footer-legal a:hover { color: var(--text); }
+.gv-footer-legal a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }

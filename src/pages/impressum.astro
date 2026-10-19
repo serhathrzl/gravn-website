@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+const P = (t: string) => `[${t}]`;
+---
+<Base title="Impressum – GRAVN Consulting" description="Impressum und Anbieterkennzeichnung von GRAVN Consulting." noindex>
+  <section class="section page-head">
+    <div class="container prose">
+      <p class="draft-banner">Entwurf. Platzhalter ersetzen und rechtlich prüfen lassen, bevor die Seite online geht.</p>
+      <h1 class="heading-1">Impressum</h1>
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p>{P('Name / Firma und Rechtsform')}<br />{P('Straße und Hausnummer')}<br />{P('PLZ und Ort')}</p>
+      <h2>Vertreten durch</h2>
+      <p>{P('Name der vertretungsberechtigten Person(en)')}</p>
+      <h2>Kontakt</h2>
+      <p>E-Mail: {P('E-Mail-Adresse')}<br />Telefon: {P('optional')}</p>
+      <h2>Registereintrag</h2>
+      <p>{P('Registergericht und Nummer, falls vorhanden')}</p>
+      <h2>Umsatzsteuer-ID</h2>
+      <p>{P('USt-IdNr. gemäß § 27a UStG, falls vorhanden')}</p>
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>{P('Name und Anschrift, falls erforderlich')}</p>
+    </div>
+  </section>
+</Base>

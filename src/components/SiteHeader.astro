@@ -1,0 +1,56 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+
+export interface NavLink { label: string; href: string; current?: boolean; children?: NavLink[] }
+interface Props { links: NavLink[]; cta?: { label: string; href: string } }
+const { links, cta } = Astro.props;
+---
+<header class="gv-header" data-header>
+  <div class="gv-header-bar">
+    <Logo href="/" size={22} />
+    <nav class="gv-header-nav" aria-label="Hauptnavigation">
+      {links.map((l) => l.children ? (
+        <div class="gv-nav-item">
+          <a href={l.href} class="gv-nav-link" aria-current={l.current ? 'page' : undefined}>{l.label}</a>
+          <div class="gv-nav-sub">
+            {l.children.map((c) => <a href={c.href} class="gv-nav-sublink" aria-current={c.current ? 'page' : undefined}>{c.label}</a>)}
+          </div>
+        </div>
+      ) : (
+        <a href={l.href} class="gv-nav-link" aria-current={l.current ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </nav>
+    {cta && <Button href={cta.href} class="gv-header-cta">{cta.label}</Button>}
+    <button type="button" class="gv-header-toggle" aria-expanded="false" aria-controls="gv-menu" data-toggle>
+      <span class="gv-visually-hidden" data-toggle-label>Menü öffnen</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path data-toggle-icon d="M4 9h16M4 15h16" /></svg>
+    </button>
+  </div>
+  <div id="gv-menu" class="gv-header-menu" hidden>
+    {links.map((l) => (
+      <>
+        <a href={l.href} class="gv-menu-link">{l.label}</a>
+        {l.children?.map((c) => <a href={c.href} class="gv-menu-sublink" aria-current={c.current ? 'page' : undefined}>{c.label}</a>)}
+      </>
+    ))}
+    {cta && <Button href={cta.href}>{cta.label}</Button>}
+  </div>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const btn = header?.querySelector<HTMLButtonElement>('[data-toggle]');
+  const menu = header?.querySelector<HTMLElement>('#gv-menu');
+  const label = header?.querySelector<HTMLElement>('[data-toggle-label]');
+  const icon = header?.querySelector<SVGPathElement>('[data-toggle-icon]');
+  function setOpen(open: boolean) {
+    if (!btn || !menu || !label || !icon) return;
+    btn.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+    label.textContent = open ? 'Menü schließen' : 'Menü öffnen';
+    icon.setAttribute('d', open ? 'M6 6l12 12M18 6 6 18' : 'M4 9h16M4 15h16');
+  }
+  btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  header?.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); btn?.focus(); } });
+</script>

@@ -1,0 +1,9 @@
+---
+interface Props { number: string; title: string; text?: string; class?: string }
+const { number, title, text, class: className } = Astro.props;
+---
+<li class:list={['gv-step', className]}>
+  <span class="gv-step-number">{number}</span>
+  <h3 class="gv-step-title">{title}</h3>
+  {text && <p class="gv-step-text">{text}</p>}
+</li>

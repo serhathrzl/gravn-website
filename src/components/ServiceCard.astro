@@ -1,0 +1,23 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  text?: string;
+  tags?: string[];
+  visualTone?: 'raised' | 'inverse';
+  href?: string;
+  class?: string;
+}
+const { index, title, text, tags = [], visualTone = 'raised', href, class: className } = Astro.props;
+const Title = href ? 'a' : 'span';
+---
+<article class:list={['gv-service', className]}>
+  <div class:list={['gv-service-visual', visualTone === 'inverse' && 'is-inverse']}><slot name="visual" /></div>
+  <p class="gv-service-index">{index}</p>
+  <h3 class="gv-service-title">
+    <Title href={href} class="gv-service-link">{title}</Title>
+    <svg viewBox="0 0 24 24" class="gv-arrow" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M7 17 17 7M9 7h8v8" /></svg>
+  </h3>
+  {text && <p class="gv-service-text">{text}</p>}
+  {tags.length > 0 && <p class="gv-service-tags">{tags.join(' / ')}</p>}
+</article>

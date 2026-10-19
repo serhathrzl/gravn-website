@@ -1,0 +1,105 @@
+@import '../../design-system/tokens.css';
+@import '../../design-system/components/bundle.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--surface); color: var(--text); font: 400 16px/24px var(--font-sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+main { display: block; }
+
+.container { max-width: var(--container); margin-inline: auto; padding-inline: var(--space-8); }
+@media (max-width: 767px) { .container { padding-inline: var(--space-5); } }
+
+.section { padding-block: var(--space-10); background: var(--surface); color: var(--text); }
+@media (max-width: 767px) { .section { padding-block: var(--space-9); } }
+
+.skip-link { position: absolute; left: var(--space-4); top: -100px; z-index: 10; background: var(--action); color: var(--on-action); padding: var(--space-3) var(--space-4); }
+.skip-link:focus { top: var(--space-4); }
+
+/* Mobile-Größen laut Designsystem (README: 47/51, 64/62; Section 36/40) */
+@media (max-width: 767px) {
+  .display { font-size: 47px; line-height: 51px; }
+  .display-cta { font-size: 64px; line-height: 62px; }
+  .heading-1 { font-size: 36px; line-height: 40px; }
+}
+
+/* Seitenlayout (Raster laut Designsystem: 3 Spalten, space-6 Abstand) */
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-7); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); margin: var(--space-7) 0 0; padding: 0; list-style: none; }
+@media (max-width: 1023px) { .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .grid-3, .grid-4 { grid-template-columns: 1fr; } .grid-3 { gap: var(--space-7); } }
+
+.hero { padding-block: var(--space-10) var(--space-9); }
+.hero .eyebrow { margin: 0 0 var(--space-6); color: var(--text-secondary); }
+.hero h1 { margin: 0; max-width: 14ch; text-wrap: balance; }
+.hero-lower { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-6); margin-top: var(--space-8); align-items: end; }
+.hero-lower .lead { margin: 0; max-width: var(--measure); color: var(--text-secondary); }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); margin-top: var(--space-6); }
+@media (max-width: 767px) { .hero { padding-block: var(--space-9); } .hero-lower { grid-template-columns: 1fr; margin-top: var(--space-7); } }
+
+.service-visual { width: 100%; height: 100%; display: block; }
+.note { margin: var(--space-6) 0 0; max-width: var(--measure); font: 400 15px/23px var(--font-sans); color: var(--text-secondary); }
+.about-text { margin: var(--space-5) 0 var(--space-4); max-width: var(--measure); color: var(--text-secondary); }
+.placeholder { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); border: var(--hairline) dashed var(--line-strong); padding: var(--space-2) var(--space-3); display: inline-block; }
+.cta-block { text-align: left; }
+.cta-block .display-cta { margin: 0 0 var(--space-7); text-wrap: balance; }
+.cta-block .lead { max-width: var(--measure); color: var(--text-secondary); margin: 0 0 var(--space-6); }
+
+/* Workaround: .gv-section-heading ist selbst Container, seine @container-Regel greift dort nicht. Siehe docs/design-system-hinweise.md */
+@media (max-width: 767px) {
+  .gv-section-heading { grid-template-columns: 1fr; }
+}
+
+/* Listen mit Haarlinien (Leistungsseiten) */
+.rows { list-style: none; margin: var(--space-7) 0 0; padding: 0; display: grid; grid-template-columns: 1fr; }
+.rows li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--space-5); padding: var(--space-5) 0; border-top: var(--hairline) solid var(--line); }
+.rows li:last-child { border-bottom: var(--hairline) solid var(--line); }
+.rows .lead { max-width: var(--measure); }
+.rows-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); }
+.rows-2 li:nth-last-child(2):nth-child(odd) { border-bottom: var(--hairline) solid var(--line); }
+@media (max-width: 767px) { .rows-2 { grid-template-columns: 1fr; } .rows li { grid-template-columns: 40px minmax(0, 1fr); } .rows li .lead { font-size: 18px; line-height: 26px; } }
+
+/* Formulare (Erweiterung des Designsystems: eckig, Haarlinien, 48px) */
+.form { display: grid; gap: var(--space-6); max-width: 720px; margin-top: var(--space-7); }
+.field { display: grid; gap: var(--space-2); }
+.field label { font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+.field input, .field select, .field textarea { width: 100%; min-height: var(--control-height); padding: var(--space-3) var(--space-4); background: var(--surface-raised); color: var(--text); border: var(--hairline) solid var(--line-strong); border-radius: var(--radius-none); font: 400 16px/24px var(--font-sans); }
+.field textarea { min-height: 160px; resize: vertical; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible, .check input:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.field [aria-invalid="true"] { border-color: var(--text); }
+.field-error { margin: 0; font: 400 14px/20px var(--font-sans); color: var(--text); }
+.check { display: grid; grid-template-columns: 24px 1fr; gap: var(--space-3); align-items: start; font: 400 14px/20px var(--font-sans); color: var(--text-secondary); }
+.check input { width: 20px; height: 20px; margin: 0; accent-color: var(--action); }
+.form-status { margin: 0; padding: var(--space-4) 0; border-top: var(--hairline) solid var(--line); border-bottom: var(--hairline) solid var(--line); font: 400 16px/24px var(--font-sans); }
+.form-status[hidden] { display: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Fließtext für Rechtsseiten */
+.prose { max-width: 720px; }
+.prose h2 { font: 400 28px/32px var(--font-sans); letter-spacing: -.02em; margin: var(--space-8) 0 var(--space-4); }
+.prose h3 { font: 450 16px/24px var(--font-sans); margin: var(--space-6) 0 var(--space-2); }
+.prose p, .prose li { color: var(--text-secondary); max-width: var(--measure); }
+.prose a { text-underline-offset: 3px; }
+.draft-banner { margin: 0 0 var(--space-7); padding: var(--space-4) 0; border-top: var(--hairline) solid var(--line-strong); border-bottom: var(--hairline) solid var(--line-strong); font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+.page-head { padding-block: var(--space-10) var(--space-8); }
+@media (max-width: 767px) { .page-head { padding-block: var(--space-9) var(--space-7); } }
+.page-head .eyebrow { margin: 0 0 var(--space-6); color: var(--text-secondary); }
+.page-head h1 { margin: 0; text-wrap: balance; }
+
+/* Header-Untermenü (Erweiterung): öffnet per Hover und Tastaturfokus */
+.gv-header { position: relative; z-index: 5; }
+.gv-nav-item { position: relative; display: flex; }
+.gv-nav-sub { position: absolute; top: 100%; left: calc(var(--space-5) * -1); min-width: 320px; display: none; flex-direction: column; padding: var(--space-3) var(--space-5) var(--space-4); background: var(--surface); border: var(--hairline) solid var(--line); }
+.gv-nav-item:hover .gv-nav-sub, .gv-nav-item:focus-within .gv-nav-sub { display: flex; }
+.gv-nav-sublink { font: 400 14px/20px var(--font-sans); color: var(--text); text-decoration: none; padding: var(--space-3) 0; border-bottom: var(--hairline) solid var(--line); }
+.gv-nav-sublink:last-child { border-bottom: 0; }
+.gv-nav-sublink:hover, .gv-nav-sublink[aria-current="page"] { color: var(--accent); }
+.gv-nav-sublink:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.gv-menu-sublink { font: 400 18px/26px var(--font-sans); color: var(--text-secondary); text-decoration: none; padding-left: var(--space-5); }
+.gv-menu-sublink[aria-current="page"] { color: var(--accent); }
+.gv-menu-sublink:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.gv-footer-nav { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin-top: var(--space-7); font: 400 14px/20px var(--font-sans); }
+.gv-footer-nav a { color: var(--text); text-decoration: none; }
+.gv-footer-nav a:hover { color: var(--accent); }
+.gv-footer-nav a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+main:focus { outline: none; }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 40" width="215" height="40" role="img" aria-label="GRAVN">
+  <g fill="none" stroke="#080808" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M33.44 6.56 A19 19 0 1 0 39 20 H22"/>
+    <path d="M57 1 H67 A9.5 9.5 0 0 1 67 20 H57"/>
+  </g>
+  <g fill="#080808">
+    <rect x="56" y="0" width="2" height="40"/>
+    <polygon points="62.8,20 65.2,20 79.2,40 76.8,40"/>
+    <polygon points="95.2,40 112.2,0 129.2,40 126.8,40 112.2,5.65 97.6,40"/>
+    <polygon points="136.2,0 138.6,0 153.2,34.35 167.8,0 170.2,0 153.2,40"/>
+    <rect x="186.2" y="0" width="2" height="40"/>
+    <rect x="212.2" y="0" width="2" height="40"/>
+    <polygon points="186.2,0 188.8,0 214.2,40 211.6,40"/>
+  </g>
+</svg>

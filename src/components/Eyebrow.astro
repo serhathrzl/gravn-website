@@ -1,0 +1,7 @@
+---
+interface Props { index?: string; class?: string }
+const { index, class: className } = Astro.props;
+---
+<p class:list={['gv-eyebrow', className]}>
+  {index && (<><span class="gv-eyebrow-index">{index}</span><span aria-hidden="true"> / </span></>)}<slot />
+</p>

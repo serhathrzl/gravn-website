@@ -1,0 +1,77 @@
+/* GRAVN — generated from tokens.json. Do not edit by hand; change tokens.json and regenerate. */
+
+@font-face { font-family: 'Geist'; src: url('./fonts/Geist-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Geist Mono'; src: url('./fonts/GeistMono-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+
+:root, [data-theme="light"] {
+  --ink: #080808;
+  --paper: #f1f1f1;
+  --white: #ffffff;
+  --graphite: #626262;
+  --ash: #9a9a9a;
+  --carbon: #141414;
+  --hairline-paper: #d4d4d4;
+  --hairline-ink: #2a2a2a;
+  --brass: #c9a96e;
+  --brass-deep: #7a5f30;
+  --steel: #b9bcc0;
+  --surface: var(--paper);
+  --surface-raised: var(--white);
+  --surface-inverse: var(--ink);
+  --text: var(--ink);
+  --text-secondary: var(--graphite);
+  --text-inverse: var(--paper);
+  --line: var(--hairline-paper);
+  --line-strong: #8a8a8a;
+  --action: var(--ink);
+  --on-action: var(--white);
+  --accent: var(--brass-deep);
+  --focus: var(--ink);
+}
+
+[data-theme="dark"] {
+  --surface: var(--ink);
+  --surface-raised: var(--carbon);
+  --surface-inverse: var(--paper);
+  --text: var(--paper);
+  --text-secondary: var(--ash);
+  --text-inverse: var(--ink);
+  --line: var(--hairline-ink);
+  --line-strong: #6e6e6e;
+  --action: var(--white);
+  --on-action: var(--ink);
+  --accent: var(--brass);
+  --focus: var(--white);
+}
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+  --space-9: 120px;
+  --space-10: 160px;
+  --radius-none: 0;
+  --radius-full: 9999px;
+  --hairline: 1px;
+  --control-height: 48px;
+  --header-height: 80px;
+  --container: 1440px;
+  --measure: 560px;
+  --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+
+.display-cta { font-family: var(--font-sans); font-size: 128px; line-height: 120px; font-weight: 350; letter-spacing: -0.05em; }
+.display { font-family: var(--font-sans); font-size: 91px; line-height: 97px; font-weight: 350; letter-spacing: -0.045em; }
+.numeral { font-family: var(--font-sans); font-size: 64px; line-height: 64px; font-weight: 250; letter-spacing: -0.04em; }
+.heading-1 { font-family: var(--font-sans); font-size: 56px; line-height: 60px; font-weight: 350; letter-spacing: -0.035em; }
+.heading-2 { font-family: var(--font-sans); font-size: 28px; line-height: 32px; font-weight: 400; letter-spacing: -0.02em; }
+.lead { font-family: var(--font-sans); font-size: 21px; line-height: 30px; font-weight: 400; letter-spacing: -0.01em; }
+.body { font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 400; }
+.label { font-family: var(--font-sans); font-size: 15px; line-height: 20px; font-weight: 450; }
+.eyebrow { font-family: var(--font-mono); font-size: 11px; line-height: 16px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; }

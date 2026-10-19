@@ -1,0 +1,82 @@
+---
+import Base from './Base.astro';
+import Button from '../components/Button.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import { processSteps } from '../data/process';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  /** Zwei kurze Aussagen, getrennt durch "|" */
+  headline: string;
+  intro: string;
+  situation: string[];
+  services: string[];
+  benefits: string[];
+  note?: string;
+}
+const { title, description, eyebrow, headline, intro, situation, services, benefits, note } = Astro.props;
+const [h1a, h1b] = headline.split('|');
+---
+<Base title={title} description={description}>
+  <section class="hero section">
+    <div class="container">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="display">{h1a}<br />{h1b}</h1>
+      <div class="hero-lower">
+        <div>
+          <p class="lead">{intro}</p>
+          <div class="hero-actions"><Button href="/kontakt">Projekt besprechen</Button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-theme="dark" aria-labelledby="s1">
+    <div class="container">
+      <SectionHeading index="01" eyebrow="Typische Ausgangslage">
+        <Fragment slot="title"><span id="s1">Der Ausgangspunkt.<br />Ehrlich benannt.</span></Fragment>
+      </SectionHeading>
+      <ul class="rows">{situation.map((t, i) => <li><span class="gv-eyebrow-index">{String(i + 1).padStart(2, '0')}</span><span class="lead">{t}</span></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s2">
+    <div class="container">
+      <SectionHeading index="02" eyebrow="Was wir tun">
+        <Fragment slot="title"><span id="s2">Mögliche Leistungen.<br />Nach deinem Bedarf.</span></Fragment>
+        <Fragment slot="intro">Du musst nicht alles nehmen. Wir klären gemeinsam, was für dein Vorhaben sinnvoll ist.</Fragment>
+      </SectionHeading>
+      <ul class="rows rows-2">{services.map((t, i) => <li><span class="gv-eyebrow-index">{String(i + 1).padStart(2, '0')}</span><span class="lead">{t}</span></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section" data-theme="dark" aria-labelledby="s3">
+    <div class="container">
+      <SectionHeading index="03" eyebrow="Dein Nutzen">
+        <Fragment slot="title"><span id="s3">Was du davon hast.<br />Konkret.</span></Fragment>
+      </SectionHeading>
+      <ul class="rows">{benefits.map((t, i) => <li><span class="gv-eyebrow-index">{String(i + 1).padStart(2, '0')}</span><span class="lead">{t}</span></li>)}</ul>
+      {note && <p class="note">{note}</p>}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s4">
+    <div class="container">
+      <SectionHeading index="04" eyebrow="So arbeiten wir">
+        <Fragment slot="title"><span id="s4">Klar im Ablauf.<br />Offen im Austausch.</span></Fragment>
+      </SectionHeading>
+      <ol class="grid-4">{processSteps.map((s) => <ProcessStep {...s} />)}</ol>
+    </div>
+  </section>
+
+  <section class="section" data-theme="dark" aria-labelledby="cta-title">
+    <div class="container cta-block">
+      <h2 class="display-cta" id="cta-title">Was hast du vor<span class="gv-accent">?</span></h2>
+      <p class="lead">Erzähl uns in ein paar Sätzen von deinem Projekt. Wir melden uns persönlich.</p>
+      <Button href="/kontakt">Projekt besprechen</Button>
+    </div>
+  </section>
+</Base>

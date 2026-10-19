@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import geistUrl from '../../design-system/fonts/Geist-Variable.woff2?url';
+
+interface Props { title: string; description: string; noindex?: boolean }
+const { title, description, noindex = false } = Astro.props;
+const path = Astro.url.pathname;
+// Navigation wird in Phase 2 mit den echten Seiten erweitert.
+const services = [
+  { label: 'Websites & digitale Erlebnisse', href: '/websites' },
+  { label: 'Marketing & Social Media', href: '/marketing' },
+  { label: 'KI & Automatisierung', href: '/ki-automatisierung' },
+].map((l) => ({ ...l, current: path.startsWith(l.href) }));
+const links = [
+  { label: 'Leistungen', href: '/#leistungen', current: services.some((s) => s.current), children: services },
+  { label: 'Über uns', href: '/ueber-uns', current: path.startsWith('/ueber-uns') },
+  { label: 'Kontakt', href: '/kontakt', current: path.startsWith('/kontakt') },
+];
+const canonical = new URL(path, Astro.site);
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="preload" href={geistUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="GRAVN Consulting" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:locale" content="de_DE" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Zum Inhalt springen</a>
+    <SiteHeader links={links} cta={{ label: 'Projekt besprechen', href: '/kontakt' }} />
+    <main id="main" tabindex="-1"><slot /></main>
+    <SiteFooter nav={links.flatMap((l) => (l.children ? l.children : [l]))} />
+  </body>
+</html>
