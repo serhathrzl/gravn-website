@@ -1,0 +1,10 @@
+---
+import type { Person } from '../data/about';
+const { name, role, text, photo, photoAlt } = Astro.props as Person;
+---
+<article class="person">
+  {photo && <div class="person-photo"><img src={photo} alt={photoAlt ?? `Porträt von ${name}`} loading="lazy" width="480" height="600" /></div>}
+  <p class="gv-service-index">{role}</p>
+  <h3 class="gv-service-title" style="display:block">{name}</h3>
+  {text && <p class="gv-service-text">{text}</p>}
+</article>

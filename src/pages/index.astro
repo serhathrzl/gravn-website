@@ -4,6 +4,7 @@ import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProcessStep from '../components/ProcessStep.astro';
+import { about } from '../data/about';
 ---
 <Base
   title="GRAVN Consulting – Websites, Marketing und KI für wachsende Marken"
@@ -94,7 +95,9 @@ import ProcessStep from '../components/ProcessStep.astro';
       <SectionHeading index="04" eyebrow="Über uns">
         <Fragment slot="title"><span id="about-title">Ein Studio.<br />Drei Disziplinen.</span></Fragment>
       </SectionHeading>
-      <p class="about-text"><span class="placeholder">Platzhalter: 2 Sätze zu uns – wer, warum, Haltung</span></p>
+      {about.intro
+        ? <p class="about-text">{about.intro}</p>
+        : <p class="about-text"><span class="placeholder">Platzhalter: 2 Sätze zu uns – wer, warum, Haltung</span></p>}
       <Button variant="link" href="/ueber-uns">Mehr über uns</Button>
     </div>
   </section>

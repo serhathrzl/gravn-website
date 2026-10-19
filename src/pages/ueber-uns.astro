@@ -2,13 +2,17 @@
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import PersonCard from '../components/PersonCard.astro';
+import { about } from '../data/about';
 ---
 <Base title="Über uns – GRAVN Consulting" description="Ein Studio, drei Disziplinen: Websites, Marketing und KI. Lerne uns und unsere Haltung kennen.">
   <section class="section page-head">
     <div class="container">
       <p class="eyebrow">Über uns</p>
       <h1 class="display">Ein Studio.<br />Drei Disziplinen<span class="gv-accent">.</span></h1>
-      <p class="about-text"><span class="placeholder">Platzhalter: Wer seid ihr, wie viele, seit wann, warum GRAVN</span></p>
+      {about.intro
+        ? <p class="lead" style="max-width:var(--measure);color:var(--text-secondary);margin-top:var(--space-6)">{about.intro}</p>
+        : <p class="about-text"><span class="placeholder">Platzhalter: Wer seid ihr, wie viele, seit wann, warum GRAVN</span></p>}
     </div>
   </section>
 
@@ -26,7 +30,9 @@ import SectionHeading from '../components/SectionHeading.astro';
       <SectionHeading index="02" eyebrow="Menschen">
         <Fragment slot="title"><span id="team">Das Team.<br />Mit Gesicht.</span></Fragment>
       </SectionHeading>
-      <p class="about-text"><span class="placeholder">Platzhalter: Namen, Rollen, optional Foto (keine Stockfotos)</span></p>
+      {about.people.length
+        ? <div class="grid-3">{about.people.map((p) => <PersonCard {...p} />)}</div>
+        : <p class="about-text"><span class="placeholder">Platzhalter: Namen, Rollen, optional Foto (keine Stockfotos)</span></p>}
       <Button href="/kontakt">Projekt besprechen</Button>
     </div>
   </section>
