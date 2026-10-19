@@ -1,4 +1,4 @@
-# GRAVN Consulting – Website
+# GRAVN Digital – Website
 
 Statische Agentur-Website (Deutsch, "du"). Inhaber ist Einsteiger: Claude erklärt auf Deutsch, einfach, empfiehlt statt Optionen aufzuzählen.
 
@@ -34,3 +34,6 @@ All UI follows the GRAVN design system in `design-system/`. Before building or c
 ## Stand
 Phasen 1–7 umgesetzt (siehe Plan). Vor Launch: `docs/launch-checkliste.md` abarbeiten. Designsystem-Auffälligkeiten: `docs/design-system-hinweise.md`. Inhalte/Texte: `docs/inhalt-entwurf.md`.
 Security-Header liegen in `public/_headers` (CSP ohne Inline-Skripte; `assetsInlineLimit: 0` in `astro.config.mjs` muss bleiben).
+
+## Vorschau
+`npm run vorschau` baut die Seite und erzeugt `vorschau/` (per Doppelklick öffnbar, nicht in Git). Nach jeder inhaltlichen Änderung ausführen, damit die Vorschau aktuell ist.

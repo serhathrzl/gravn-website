@@ -1,11 +1,11 @@
 import type * as React from 'react';
 
 export interface LogoProps {
-  /** lockup = wordmark + "CONSULTING" descriptor (default); wordmark = letters only; mark = the G monogram */
+  /** lockup = wordmark + "DIGITAL" descriptor (default); wordmark = letters only; mark = the G monogram */
   variant?: 'lockup' | 'wordmark' | 'mark';
   /** Cap height of the wordmark in px. Default 24. Never below 16 (wordmark) or 20 (mark). */
   size?: number;
-  /** Descriptor under the wordmark in the lockup. Default "Consulting". */
+  /** Descriptor under the wordmark in the lockup. Default "Digital". */
   descriptor?: string;
   /** Renders an <a>; use for the home link in the header. */
   href?: string;

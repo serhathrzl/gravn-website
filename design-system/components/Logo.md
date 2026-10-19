@@ -4,7 +4,7 @@ Renders the GRAVN logo inline as SVG, so it takes `currentColor` from its parent
 
 **Consumer provides:** `variant`, `size` (cap height in px) and, for the home link, `href`.
 
-- `lockup` (default): wordmark + mono descriptor "CONSULTING" at .42em tracking. Header and email signatures.
+- `lockup` (default): wordmark + mono descriptor "DIGITAL" at .42em tracking. Header and email signatures.
 - `wordmark`: letters only. Footer (full width), favicons never.
 - `mark`: the open G. Favicons, social avatars, loading states — anywhere below 120px width.
 

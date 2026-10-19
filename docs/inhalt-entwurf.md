@@ -1,4 +1,4 @@
-# GRAVN Consulting – Inhaltsentwurf (Phase 2)
+# GRAVN Digital – Inhaltsentwurf (Phase 2)
 
 Status: **Entwurf zur Freigabe.** Alle Texte sind Vorschläge. Nichts hier ist eine bestätigte Tatsache über die Agentur. Stellen mit **[PLATZHALTER]** brauchen deine Angaben.
 Regeln (aus dem Designsystem): "du", kurze Sätze mit Punkt, Überschriften als Paar auf zwei Zeilen, nur "KI" (nie "AI" im Fließtext), keine Ausrufezeichen, keine erfundenen Kunden, Zahlen oder Ergebnisse. Die einzige Frage ist "Was hast du vor?".
@@ -27,7 +27,7 @@ Regeln (aus dem Designsystem): "du", kurze Sätze mit Punkt, Überschriften als 
 
 ## 2. Startseite
 
-**Meta Title:** GRAVN Consulting – Websites, Marketing und KI für wachsende Marken
+**Meta Title:** GRAVN Digital – Websites, Marketing und KI für wachsende Marken
 **Meta Description:** Wir bauen Websites, machen Marken sichtbar und nehmen dir Routine ab. Drei Disziplinen, ein Ansprechpartner. **[Beschreibung final nach Freigabe]**
 
 ### Hero
@@ -75,7 +75,7 @@ Regeln (aus dem Designsystem): "du", kurze Sätze mit Punkt, Überschriften als 
 
 ## 3. Leistungsseite: Websites & digitale Erlebnisse (`/websites`)
 
-**Meta Title:** Websites & digitale Erlebnisse – GRAVN Consulting
+**Meta Title:** Websites & digitale Erlebnisse – GRAVN Digital
 **Meta Description:** Moderne Websites und Landingpages, die Besucher zu Anfragen machen. Design, Entwicklung und Optimierung aus einer Hand. **[final nach Freigabe]**
 
 - Hero: **Websites, die Eindruck machen.<br>Und Anfragen bringen.**
@@ -88,7 +88,7 @@ Regeln (aus dem Designsystem): "du", kurze Sätze mit Punkt, Überschriften als 
 
 ## 4. Leistungsseite: Marketing & Social Media (`/marketing`)
 
-**Meta Title:** Marketing & Social Media – GRAVN Consulting
+**Meta Title:** Marketing & Social Media – GRAVN Digital
 **Meta Description:** Sichtbarkeit für Marken: Social Media, Inhalte und Kampagnen, die zu dir passen. **[final nach Freigabe]**
 
 - Hero: **Sichtbar werden.<br>Im Gedächtnis bleiben.**
@@ -101,7 +101,7 @@ Regeln (aus dem Designsystem): "du", kurze Sätze mit Punkt, Überschriften als 
 
 ## 5. Leistungsseite: KI & Automatisierung (`/ki-automatisierung`)
 
-**Meta Title:** KI & Automatisierung – GRAVN Consulting
+**Meta Title:** KI & Automatisierung – GRAVN Digital
 **Meta Description:** Wiederkehrende Aufgaben automatisieren und KI sinnvoll einsetzen, ohne Hype und mit klarem Nutzen. **[final nach Freigabe]**
 
 - Hero: **Weniger Routine.<br>Mehr Zeit für dein Business.**

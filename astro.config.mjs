@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// TODO (Launch): echte Domain eintragen, sobald sie feststeht (siehe docs/launch-checkliste.md).
+// Domain: gravndigital.com (www als Hauptadresse; Weiterleitung von der Domain ohne www beim Hosting einrichten).
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://www.gravndigital.com',
   integrations: [
     sitemap({
       // Rechtsseiten sind noch Entwürfe (noindex) und gehören bis zur Freigabe nicht in die Sitemap.

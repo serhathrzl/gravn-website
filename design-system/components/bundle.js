@@ -34,9 +34,9 @@
     var inner;
     if (variant === 'mark') inner = h(Mark, null);
     else if (variant === 'wordmark') inner = h(Wordmark, null);
-    else inner = h(React.Fragment, null, h(Wordmark, null), h('span', { className: 'gv-logo-descriptor' }, props.descriptor || 'Consulting'));
+    else inner = h(React.Fragment, null, h(Wordmark, null), h('span', { className: 'gv-logo-descriptor' }, props.descriptor || 'Digital'));
     var Tag = props.href ? 'a' : 'span';
-    return h(Tag, { href: props.href, className: cx('gv-logo', 'gv-logo--' + variant, props.className), style: { '--gv-logo-h': size + 'px' }, 'aria-label': props.href ? 'GRAVN Consulting – Startseite' : undefined }, inner);
+    return h(Tag, { href: props.href, className: cx('gv-logo', 'gv-logo--' + variant, props.className), style: { '--gv-logo-h': size + 'px' }, 'aria-label': props.href ? 'GRAVN Digital – Startseite' : undefined }, inner);
   }
 
   /* ---------- Button ---------- */
@@ -116,7 +116,7 @@
     return h('footer', { className: cx('gv-footer', props.className) },
       h('div', { className: 'gv-footer-mark' }, h(Wordmark, null)),
       h('div', { className: 'gv-footer-row' },
-        h('span', null, '© ' + year + ' GRAVN Consulting'),
+        h('span', null, '© ' + year + ' GRAVN Digital'),
         h('nav', { 'aria-label': 'Rechtliches', className: 'gv-footer-legal' },
           legal.map(function (l) { return h('a', { key: l.href, href: l.href }, l.label); }))));
   }

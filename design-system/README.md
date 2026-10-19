@@ -5,7 +5,7 @@ GRAVN is a strategy, design and AI studio. The brand is quiet, monochrome and ex
 The wordmark is **drawn, not typed** — five geometric letters at a single hairline weight, tracked wide. The A has no crossbar (Λ) and mirrors the V beside it; their legs run parallel, which gives the mark its rhythm and is the brand's one signature shape. The G is an open circle with a short inward bar — on its own it is the **mark**.
 
 - Use `assets/logos/gravn-wordmark-ink.svg` on Paper and White, `gravn-wordmark-paper.svg` on Ink. In code, use `Gravn.Logo` (inline SVG, inherits `text`).
-- `Logo variant="lockup"` (wordmark + "CONSULTING" in `font-mono` at .42em tracking) for the header; `wordmark` alone for the full-width footer; `mark` for favicon, avatars and anything under 120px wide. Favicon: `gravn-favicon.svg`.
+- `Logo variant="lockup"` (wordmark + "DIGITAL" in `font-mono` at .42em tracking) for the header; `wordmark` alone for the full-width footer; `mark` for favicon, avatars and anything under 120px wide. Favicon: `gravn-favicon.svg`.
 - Clear space: one cap height on every side. Minimum: wordmark 16px cap height, mark 20px.
 - Never set "GRAVN" in a font as a logo, never add a crossbar to the Λ, never outline, stretch, rotate, gradient-fill or recolour it beyond `ink` / `paper`.
 
