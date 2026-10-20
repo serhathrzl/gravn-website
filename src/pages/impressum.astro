@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
 const P = (t: string) => `[${t}]`;
 ---
 <Base title="Impressum – GRAVN Digital" description="Impressum und Anbieterkennzeichnung von GRAVN Digital." noindex>
@@ -12,7 +13,7 @@ const P = (t: string) => `[${t}]`;
       <h2>Vertreten durch</h2>
       <p>{P('Name der vertretungsberechtigten Person(en)')}</p>
       <h2>Kontakt</h2>
-      <p>E-Mail: {P('E-Mail-Adresse')}<br />Telefon: {P('optional')}</p>
+      <p>E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />Telefon: {P('optional')}</p>
       <h2>Registereintrag</h2>
       <p>{P('Registergericht und Nummer, falls vorhanden')}</p>
       <h2>Umsatzsteuer-ID</h2>

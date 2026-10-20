@@ -3,7 +3,7 @@
 Vor dem Livegang erledigen:
 
 - [x] Domain `https://www.gravndigital.com` in `astro.config.mjs` eingetragen. Beim Hosting: `gravndigital.com` auf `www` weiterleiten.
-- [ ] Mail-Adressen `kontakt@` und `info@gravndigital.com` einrichten und testen, erst dann Platzhalter-E-Mail auf Kontakt- und Impressumsseite ersetzen.
+- [x] `kontakt@gravndigital.com` (Strato-Postfach, `info@` als Alias) eingerichtet; SPF, DKIM, DMARC bestanden; Adresse steht in `src/data/site.ts`.
 - [ ] Impressum und Datenschutz mit echten Angaben füllen, rechtlich prüfen lassen, danach in `impressum.astro` und `datenschutz.astro` das `noindex` entfernen und den Sitemap-Filter in `astro.config.mjs` anpassen.
 - [ ] Platzhalter (`.placeholder`, `[...]`) auf Startseite, Über uns und Kontakt ersetzen.
 - [ ] Kontaktformular: Hosting, Mail-Dienst (`RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM` als Umgebungsvariablen), Turnstile ergänzen, Testsendung.
