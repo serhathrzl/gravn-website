@@ -5,6 +5,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProcessStep from '../components/ProcessStep.astro';
 import { about } from '../data/about';
+import { processSteps } from '../data/process';
 import Illustration from '../components/Illustration.astro';
 import imgWebsites from '../assets/illustrations/websites.png';
 import imgMarketing from '../assets/illustrations/marketing.png';
@@ -34,16 +35,16 @@ import imgKi from '../assets/illustrations/ki.png';
     <div class="container">
       <SectionHeading index="01" eyebrow="Unsere Expertise">
         <Fragment slot="title"><span id="leistungen-title">Drei Disziplinen.<br />Ein klarer Anspruch.</span></Fragment>
-        <Fragment slot="intro">Jede Disziplin steht für sich. Zusammen sparen sie dir Abstimmung und bringen mehr Wirkung.</Fragment>
+        <Fragment slot="intro">Ein überzeugender Auftritt, mehr Sichtbarkeit und einfachere Abläufe. Wir verbinden Webdesign, Marketing und KI zu Lösungen, die zusammenpassen und dein Unternehmen weiterbringen.</Fragment>
       </SectionHeading>
       <div class="grid-3">
-        <ServiceCard index="01" title="Websites & digitale Erlebnisse" text="Websites, die nicht nur gut aussehen, sondern dein Business voranbringen." tags={['Design', 'Entwicklung', 'Optimierung']} href="/websites">
+        <ServiceCard index="01" title="Websites & Webdesign" text="Wir gestalten und entwickeln Websites, die dein Angebot verständlich machen, Vertrauen schaffen und den Weg zur Anfrage erleichtern. Durchdacht im Design, intuitiv in der Bedienung und auf jedem Gerät überzeugend." tags={['Design', 'Entwicklung', 'Optimierung']} href="/websites">
           <Illustration slot="visual" zoom="mobile" src={imgWebsites} alt="Isometrische Illustration: drei übereinanderliegende Ebenen für Design, Entwicklung und Optimierung einer Website" />
         </ServiceCard>
-        <ServiceCard index="02" title="Marketing & Social Media" text="Wir machen sichtbar, was dich ausmacht, und sorgen dafür, dass die Richtigen es sehen." tags={['Strategie', 'Inhalte', 'Kanäle']} href="/marketing">
+        <ServiceCard index="02" title="Marketing & Social Media" text="Wir machen sichtbar, was dein Unternehmen auszeichnet. Mit einer klaren Strategie, relevanten Inhalten und gezielten Kampagnen sprechen wir die Menschen an, die zu deinem Angebot passen." tags={['Strategie', 'Inhalte', 'Kanäle']} href="/marketing">
           <Illustration slot="visual" zoom="mobile" src={imgMarketing} alt="Isometrische Illustration: Strategie, Inhalte und Kanäle als Plattform mit Signalen, die Menschen erreichen" />
         </ServiceCard>
-        <ServiceCard index="03" title="KI & Automatisierung" text="Weniger Routine. Mehr Zeit für dein Business." tags={['Workflows', 'Assistenten', 'Beratung']} href="/ki-automatisierung">
+        <ServiceCard index="03" title="KI & Automatisierung" text="Wir verbinden deine Systeme, automatisieren wiederkehrende Aufgaben und integrieren digitale Assistenten in deinen Arbeitsalltag. Mit passender Beratung und einer Umsetzung, die dein Team entlastet." tags={['Workflows', 'Assistenten', 'Beratung']} href="/ki-automatisierung">
           <Illustration slot="visual" zoom="mobile" src={imgKi} alt="Isometrische Illustration: Fließband mit automatisiertem Ablauf, Assistent und Ablaufdiagramm für KI und Automatisierung" />
         </ServiceCard>
       </div>
@@ -52,16 +53,16 @@ import imgKi from '../assets/illustrations/ki.png';
 
   <section class="section" data-theme="dark" aria-labelledby="zusammen-title">
     <div class="container">
-      <SectionHeading index="02" eyebrow="Zusammen">
+      <SectionHeading index="02" eyebrow="Zusammenspiel">
         <Fragment slot="title"><span id="zusammen-title">Gut für sich.<br />Besser zusammen.</span></Fragment>
-        <Fragment slot="intro">Viele Projekte beginnen mit einer Website. Dann kommt die Frage, wie dich die Richtigen finden. Später die, wie du dir Routine sparst. Bei uns baut das eine auf dem anderen auf, ohne Brüche und ohne neue Ansprechpartner.</Fragment>
+        <Fragment slot="intro">Deine Website erklärt dein Angebot. Dein Marketing bringt die passenden Menschen dorthin. KI und Automatisierung helfen dir, Anfragen und Aufgaben effizient zu bearbeiten. Wir stimmen diese Bereiche aufeinander ab, damit aus einzelnen Maßnahmen ein durchdachter Gesamtauftritt entsteht.</Fragment>
       </SectionHeading>
       <ol class="grid-3" style="padding:0;list-style:none">
-        <ProcessStep number="01" title="Auftritt aufbauen" text="Eine Website, die zu dir passt." />
-        <ProcessStep number="02" title="Sichtbarkeit schaffen" text="Inhalte und Kanäle, die dich zeigen." />
-        <ProcessStep number="03" title="Abläufe entlasten" text="KI und Automatisierung, wo sie sich lohnen." />
+        <ProcessStep number="01" title="Auftritt stärken" text="Eine Website, die dein Unternehmen auf den Punkt bringt und den Weg zur Kontaktaufnahme einfach macht." />
+        <ProcessStep number="02" title="Menschen erreichen" text="Inhalte und Kampagnen, die deine Zielgruppe ansprechen und Interesse an deinem Angebot wecken." />
+        <ProcessStep number="03" title="Arbeit erleichtern" text="Intelligente Werkzeuge und automatisierte Abläufe, die wiederkehrende Aufgaben übernehmen und dein Team entlasten." />
       </ol>
-      <p class="note">Das ist ein Beispielweg, keine Pflicht. Du kannst mit jeder Disziplin einzeln starten.</p>
+      <p class="note">Du startest dort, wo du Unterstützung brauchst. Wir behalten das Ganze im Blick und entwickeln deinen nächsten Schritt gemeinsam mit dir.</p>
     </div>
   </section>
 
@@ -71,10 +72,7 @@ import imgKi from '../assets/illustrations/ki.png';
         <Fragment slot="title"><span id="ablauf-title">Klar im Ablauf.<br />Offen im Austausch.</span></Fragment>
       </SectionHeading>
       <ol class="grid-4">
-        <ProcessStep number="01" title="Verstehen" text="Wir hören zu und klären Ziel, Zielgruppe und Rahmen." />
-        <ProcessStep number="02" title="Konzipieren" text="Wir skizzieren den Weg und besprechen ihn mit dir." />
-        <ProcessStep number="03" title="Umsetzen" text="Wir bauen, testen und zeigen dir Zwischenstände." />
-        <ProcessStep number="04" title="Weiterentwickeln" text="Wir lernen aus der Praxis und verbessern gemeinsam." />
+        {processSteps.map((s) => <ProcessStep {...s} />)}
       </ol>
     </div>
   </section>
