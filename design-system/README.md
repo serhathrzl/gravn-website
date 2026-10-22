@@ -59,6 +59,13 @@ One icon family, drawn for GRAVN: 24px grid, 1.5px stroke, square caps, no fills
 
 Abstract, monochrome, precise: dark studio renders of metallic forms (`steel` on `ink`), line diagrams of workflows, typographic tiles. No stock people, no robots, no glowing brains, no blue-purple "AI" gradients.
 
+**Service illustrations (website).** Each discipline has one isometric line illustration in 4:3: `src/assets/illustrations/websites.png`, `marketing.png`, `ki.png` (greyscale, derived from the originals in `Bilder Website/`). They are the approved imagery for `ServiceCard` and the service pages.
+- Greyscale only. The brass of the originals is removed so the 90 / 9 / 1 colour ratio holds; brass stays a typographic highlight.
+- The soft ground shadows inside the illustrations are part of the artwork. The "no shadows, no gradients" rule still applies to the UI itself (cards, buttons, frames).
+- The corner and callout labels are baked into the image (not selectable, not translatable). Every image needs a descriptive `alt` text. The meta label "AI / AUTOMATION" in the third image breaks the "KI" rule; re-export it as "KI / AUTOMATISIERUNG" when the originals are next updated.
+- Use the `Illustration` component (WebP, responsive sizes); never link the 3200 px originals.
+- `ServiceCard` uses the raised (light) frame for all three cards; `visualTone="inverse"` is not used with these images.
+
 ## Motion and states
 
 - Hover is quiet: 180ms `cubic-bezier(.2,0,0,1)`. Arrows shift 2px up-right and turn `accent`; link underlines draw in; primary fills lighten slightly. Nothing bounces, nothing scales.
