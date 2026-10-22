@@ -17,6 +17,7 @@ for (const f of walk(out)) {
     if (/\.[a-z0-9]+$/i.test(pathPart)) return `${a}="${pre}${pathPart}${hs}"`;
     return `${a}="${pre}${pathPart.replace(/\/$/, '')}/index.html${hs}"`;
   });
+  h = h.replace(/srcset="([^"]*)"/g, (_, v) => `srcset="${v.replace(/(^|,\s*)\/(?!\/)/g, '$1' + pre)}"`);
   h = h.replace(/<script type="module" src=/g, '<script defer src=');
   fs.writeFileSync(f, h);
 }
@@ -35,5 +36,6 @@ for (const f of walk(out).filter((x) => x.endsWith('.html'))) {
   });
   fs.writeFileSync(f, h);
 }
-fs.rmSync(path.join(out, '_astro'), { recursive: true, force: true });
+// Nur CSS, JS und Fonts sind jetzt eingebettet; Bilder in _astro bleiben als Dateien liegen.
+for (const n of fs.readdirSync(path.join(out, '_astro'))) if (/\.(css|js|woff2)$/.test(n)) fs.rmSync(path.join(out, '_astro', n));
 fs.rmSync(path.join(out, '_headers'), { force: true });

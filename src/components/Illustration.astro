@@ -1,0 +1,15 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** "card": Drittelbreite im Raster. "wide": volle Containerbreite. */
+  size?: 'card' | 'wide';
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+const { src, alt, size = 'card', loading = 'lazy', class: className } = Astro.props;
+const sizes = size === 'card' ? '(min-width: 1024px) 460px, (min-width: 768px) 50vw, 100vw' : '(min-width: 1440px) 1280px, 100vw';
+---
+<Image src={src} alt={alt} widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />

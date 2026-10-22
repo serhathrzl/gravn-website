@@ -5,6 +5,10 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProcessStep from '../components/ProcessStep.astro';
 import { about } from '../data/about';
+import Illustration from '../components/Illustration.astro';
+import imgWebsites from '../assets/illustrations/websites.png';
+import imgMarketing from '../assets/illustrations/marketing.png';
+import imgKi from '../assets/illustrations/ki.png';
 ---
 <Base
   title="GRAVN Digital – Websites, Marketing und KI für wachsende Marken"
@@ -34,28 +38,13 @@ import { about } from '../data/about';
       </SectionHeading>
       <div class="grid-3">
         <ServiceCard index="01" title="Websites & digitale Erlebnisse" text="Websites, die nicht nur gut aussehen, sondern dein Business voranbringen." tags={['Design', 'Entwicklung', 'Optimierung']} href="/websites">
-          <svg slot="visual" class="service-visual" viewBox="0 0 400 300" fill="none" stroke="var(--text)" stroke-width="1" aria-hidden="true" focusable="false">
-            <rect x="60" y="50" width="220" height="150" />
-            <rect x="100" y="80" width="220" height="150" />
-            <rect x="140" y="110" width="200" height="130" />
-            <path d="M140 140H340M140 110V140M180 110V140" />
-            <path d="M170 170H290M170 190H250" />
-          </svg>
+          <Illustration slot="visual" src={imgWebsites} alt="Isometrische Illustration: drei übereinanderliegende Ebenen für Design, Entwicklung und Optimierung einer Website" />
         </ServiceCard>
         <ServiceCard index="02" title="Marketing & Social Media" text="Wir machen sichtbar, was dich ausmacht, und sorgen dafür, dass die Richtigen es sehen." tags={['Strategie', 'Inhalte', 'Kanäle']} href="/marketing">
-          <svg slot="visual" class="service-visual" viewBox="0 0 400 300" fill="none" stroke="var(--text)" stroke-width="1" aria-hidden="true" focusable="false">
-            <circle cx="120" cy="150" r="6" fill="var(--text)" />
-            <path d="M160 110A56 56 0 0 1 160 190M200 80A100 100 0 0 1 200 220M240 50A144 144 0 0 1 240 250" />
-          </svg>
+          <Illustration slot="visual" src={imgMarketing} alt="Isometrische Illustration: Strategie, Inhalte und Kanäle als Plattform mit Signalen, die Menschen erreichen" />
         </ServiceCard>
-        <ServiceCard index="03" title="KI & Automatisierung" text="Weniger Routine. Mehr Zeit für dein Business." tags={['Workflows', 'Assistenten', 'Beratung']} href="/ki-automatisierung" visualTone="inverse">
-          <svg slot="visual" class="service-visual" viewBox="0 0 400 300" fill="none" stroke="var(--text-inverse)" stroke-width="1" aria-hidden="true" focusable="false">
-            <rect x="60" y="120" width="50" height="50" />
-            <rect x="175" y="60" width="50" height="50" />
-            <rect x="175" y="190" width="50" height="50" />
-            <rect x="290" y="120" width="50" height="50" />
-            <path d="M110 145H140V85H175M140 145V215H175M225 85H258V145H290M225 215H258V145" />
-          </svg>
+        <ServiceCard index="03" title="KI & Automatisierung" text="Weniger Routine. Mehr Zeit für dein Business." tags={['Workflows', 'Assistenten', 'Beratung']} href="/ki-automatisierung">
+          <Illustration slot="visual" src={imgKi} alt="Isometrische Illustration: Fließband mit automatisiertem Ablauf, Assistent und Ablaufdiagramm für KI und Automatisierung" />
         </ServiceCard>
       </div>
     </div>

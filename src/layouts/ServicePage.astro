@@ -4,6 +4,7 @@ import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProcessStep from '../components/ProcessStep.astro';
 import { processSteps } from '../data/process';
+import Illustration from '../components/Illustration.astro';
 
 interface Props {
   title: string;
@@ -16,8 +17,9 @@ interface Props {
   services: string[];
   benefits: string[];
   note?: string;
+  image?: { src: ImageMetadata; alt: string };
 }
-const { title, description, eyebrow, headline, intro, situation, services, benefits, note } = Astro.props;
+const { title, description, eyebrow, headline, intro, situation, services, benefits, note, image } = Astro.props;
 const [h1a, h1b] = headline.split('|');
 ---
 <Base title={title} description={description}>
@@ -31,6 +33,7 @@ const [h1a, h1b] = headline.split('|');
           <div class="hero-actions"><Button href="/kontakt">Projekt besprechen</Button></div>
         </div>
       </div>
+      {image && <div class="illustration-wide"><Illustration src={image.src} alt={image.alt} size="wide" loading="eager" /></div>}
     </div>
   </section>
 

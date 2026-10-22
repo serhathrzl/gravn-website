@@ -108,3 +108,7 @@ main:focus { outline: none; }
 .person { display: grid; gap: var(--space-3); padding-bottom: var(--space-5); border-bottom: var(--hairline) solid var(--line); align-content: start; }
 .person-photo { aspect-ratio: 4 / 5; background: var(--surface-raised); margin-bottom: var(--space-4); overflow: hidden; }
 .person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Illustrationen (Bilder Website) */
+.illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
+.illustration-wide { margin-top: var(--space-7); aspect-ratio: 16 / 10; background: var(--surface-raised); overflow: hidden; }
