@@ -131,3 +131,8 @@ main:focus { outline: none; }
 
 /* Messing nur für Abschnitts- und Kartenindizes (Markenregel): Listennummern und Personenrollen in Grau */
 .rows .gv-eyebrow-index, .person .gv-service-index { color: var(--text-secondary); }
+
+/* Zwei Textspalten (Über uns) */
+.two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-7); }
+.two-col .lead { margin: 0; max-width: var(--measure); color: var(--text-secondary); }
+@media (max-width: 767px) { .two-col { grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-6); } }
