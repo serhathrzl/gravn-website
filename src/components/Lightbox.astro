@@ -1,0 +1,40 @@
+---
+// Ein gemeinsames Vollbild-Fenster für alle Illustrationen (Antippen zum Vergrößern).
+---
+<dialog id="lightbox" class="lightbox" aria-label="Bildansicht">
+  <button type="button" class="lightbox-close" data-lightbox-close>
+    <span class="gv-visually-hidden">Schließen</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6 6 18" /></svg>
+  </button>
+  <div class="lightbox-scroll"><img class="lightbox-img" alt="" /></div>
+</dialog>
+<script>
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const img = dialog?.querySelector<HTMLImageElement>('.lightbox-img');
+  const mobile = window.matchMedia('(max-width: 1023px)');
+  const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-zoom]'));
+
+  // "mobile"-Auslöser sind auf großen Bildschirmen nicht bedienbar (dort führt die Karte zur Leistungsseite).
+  function sync() {
+    for (const t of triggers) {
+      const off = t.dataset.zoom === 'mobile' && !mobile.matches;
+      t.tabIndex = off ? -1 : 0;
+      t.toggleAttribute('aria-hidden', off);
+    }
+  }
+  sync();
+  mobile.addEventListener('change', sync);
+
+  for (const t of triggers) {
+    t.addEventListener('click', () => {
+      if (!dialog || !img || !t.dataset.full) return;
+      img.src = t.dataset.full;
+      img.alt = t.dataset.alt ?? '';
+      dialog.showModal();
+      dialog.querySelector<HTMLElement>('.lightbox-scroll')?.scrollTo(0, 0);
+    });
+  }
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog || (e.target as HTMLElement).closest('[data-lightbox-close]')) dialog.close();
+  });
+</script>

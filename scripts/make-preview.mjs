@@ -10,7 +10,7 @@ for (const f of walk(out)) {
   const depth = path.relative(out, path.dirname(f)).split(path.sep).filter(Boolean).length;
   const pre = depth ? '../'.repeat(depth) : './';
   let h = fs.readFileSync(f, 'utf8');
-  h = h.replace(/(href|src|action)="\/([^"]*)"/g, (_, a, p) => {
+  h = h.replace(/(href|src|action|data-full)="\/([^"]*)"/g, (_, a, p) => {
     if (p.startsWith('/')) return _;
     const [pathPart, hash] = p.split('#'); const hs = hash ? '#' + hash : '';
     if (pathPart === '') return `${a}="${pre}index.html${hs}"`;

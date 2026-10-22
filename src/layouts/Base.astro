@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import Lightbox from '../components/Lightbox.astro';
 import geistUrl from '../../design-system/fonts/Geist-Variable.woff2?url';
 
 interface Props { title: string; description: string; noindex?: boolean }
@@ -43,6 +44,7 @@ const canonical = new URL(path, Astro.site);
     <a href="#main" class="skip-link">Zum Inhalt springen</a>
     <SiteHeader links={links} cta={{ label: 'Projekt besprechen', href: '/kontakt' }} />
     <main id="main" tabindex="-1"><slot /></main>
+    <Lightbox />
     <SiteFooter nav={links.flatMap((l) => (l.children ? l.children : [l]))} />
   </body>
 </html>

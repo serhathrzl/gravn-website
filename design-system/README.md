@@ -62,8 +62,10 @@ Abstract, monochrome, precise: dark studio renders of metallic forms (`steel` on
 **Service illustrations (website).** Each discipline has one isometric line illustration in 4:3: `src/assets/illustrations/websites.png`, `marketing.png`, `ki.png` (greyscale, derived from the originals in `Bilder Website/`). They are the approved imagery for `ServiceCard` and the service pages.
 - Greyscale only. The brass of the originals is removed so the 90 / 9 / 1 colour ratio holds; brass stays a typographic highlight.
 - The soft ground shadows inside the illustrations are part of the artwork. The "no shadows, no gradients" rule still applies to the UI itself (cards, buttons, frames).
-- The corner and callout labels are baked into the image (not selectable, not translatable). Every image needs a descriptive `alt` text. The meta label "AI / AUTOMATION" in the third image breaks the "KI" rule; re-export it as "KI / AUTOMATISIERUNG" when the originals are next updated.
+- The corner and callout labels are baked into the image (not selectable, not translatable). Every image needs a descriptive `alt` text. The meta label in the third image reads "KI / AUTOMATISIERUNG" (not "AI"), in line with the voice rules.
+- The working images are generated from the originals by `node scripts/make-illustrations.mjs` (greyscale, KI label). Change the originals or the script, never edit the generated PNGs by hand.
 - Use the `Illustration` component (WebP, responsive sizes); never link the 3200 px originals.
+- Zoom: tapping an illustration opens it full screen (`Illustration zoom="mobile"` on cards up to 1023 px wide, `zoom="always"` on service pages). The full-screen view is wider than the phone and can be panned and pinch-zoomed; close with the close button or Esc. On desktop, card images keep their normal behaviour (the whole card links to the service page).
 - `ServiceCard` uses the raised (light) frame for all three cards; `visualTone="inverse"` is not used with these images.
 
 ## Motion and states

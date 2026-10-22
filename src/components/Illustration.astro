@@ -1,15 +1,24 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 interface Props {
   src: ImageMetadata;
   alt: string;
   /** "card": Drittelbreite im Raster. "wide": volle Containerbreite. */
   size?: 'card' | 'wide';
+  /** Antippen vergrößert das Bild. "mobile": nur bis 1023px Breite, "always": immer. */
+  zoom?: 'mobile' | 'always' | false;
   loading?: 'lazy' | 'eager';
   class?: string;
 }
-const { src, alt, size = 'card', loading = 'lazy', class: className } = Astro.props;
+const { src, alt, size = 'card', zoom = false, loading = 'lazy', class: className } = Astro.props;
 const sizes = size === 'card' ? '(min-width: 1024px) 460px, (min-width: 768px) 50vw, 100vw' : '(min-width: 1440px) 1280px, 100vw';
+const full = zoom ? await getImage({ src, width: 2400, format: 'webp', quality: 85 }) : undefined;
 ---
-<Image src={src} alt={alt} widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />
+{zoom ? (
+  <button type="button" class:list={['zoom-trigger', `zoom-${zoom}`]} data-zoom={zoom} data-full={full?.src} data-alt={alt} aria-label={`Bild vergrößern: ${alt}`}>
+    <Image src={src} alt="" widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />
+  </button>
+) : (
+  <Image src={src} alt={alt} widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />
+)}
