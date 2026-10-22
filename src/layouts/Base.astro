@@ -10,7 +10,7 @@ const { title, description, noindex = false } = Astro.props;
 const path = Astro.url.pathname;
 // Navigation wird in Phase 2 mit den echten Seiten erweitert.
 const services = [
-  { label: 'Websites & digitale Erlebnisse', href: '/websites' },
+  { label: 'Websites & Webdesign', href: '/websites' },
   { label: 'Marketing & Social Media', href: '/marketing' },
   { label: 'KI & Automatisierung', href: '/ki-automatisierung' },
 ].map((l) => ({ ...l, current: path.startsWith(l.href) }));
