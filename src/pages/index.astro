@@ -4,7 +4,6 @@ import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProcessStep from '../components/ProcessStep.astro';
-import { about } from '../data/about';
 import { processSteps } from '../data/process';
 import Illustration from '../components/Illustration.astro';
 import imgWebsites from '../assets/illustrations/websites.png';
@@ -79,12 +78,13 @@ import imgKi from '../assets/illustrations/ki.png';
 
   <section class="section" aria-labelledby="about-title" style="padding-top:0">
     <div class="container">
-      <SectionHeading index="04" eyebrow="Über uns">
-        <Fragment slot="title"><span id="about-title">Ein Studio.<br />Drei Disziplinen.</span></Fragment>
+      <SectionHeading index="04" eyebrow="Über GRAVN">
+        <Fragment slot="title"><span id="about-title">Unternehmerisch denken.<br />Digital umsetzen.</span></Fragment>
       </SectionHeading>
-      {about.intro
-        ? <p class="about-text">{about.intro}</p>
-        : <p class="about-text"><span class="placeholder">Platzhalter: 2 Sätze zu uns – wer, warum, Haltung</span></p>}
+      <div class="two-col">
+        <p class="lead">GRAVN verbindet Unternehmensberatung, Design und Technologie. Wir bringen Erfahrung aus Unternehmens- und SAP-Beratung, Webdesign, KI, Marketing und Social Media zusammen.</p>
+        <p class="lead">Gemeinsam unterstützen wir Unternehmen dabei, ihren digitalen Auftritt zu stärken, passende Kunden zu erreichen und Arbeitsabläufe zu verbessern.</p>
+      </div>
       <Button variant="link" href="/ueber-uns">Mehr über uns</Button>
     </div>
   </section>

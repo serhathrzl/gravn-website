@@ -136,3 +136,4 @@ main:focus { outline: none; }
 .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-7); }
 .two-col .lead { margin: 0; max-width: var(--measure); color: var(--text-secondary); }
 @media (max-width: 767px) { .two-col { grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-6); } }
+.two-col + .gv-btn { margin-top: var(--space-6); }
