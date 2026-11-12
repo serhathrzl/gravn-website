@@ -50,16 +50,6 @@ main { display: block; }
 .cta-block .heading-1 { margin-inline: auto !important; text-wrap: balance; }
 .cta-block .lead { max-width: var(--measure); color: var(--text-secondary); margin: 0 auto var(--space-6); }
 
-/* VORSCHAU Wärme: Neutraltöne leicht warm statt reines Grau. Bei Freigabe in design-system/tokens.json übernehmen. */
-:root {
-  --ink: #0b0a09;
-  --paper: #f3f1ec;
-  --graphite: #625f59;
-  --ash: #a19d96;
-  --carbon: #171614;
-  --hairline-paper: #d9d5cd;
-  --hairline-ink: #2c2a27;
-}
 
 /* Workaround: .gv-section-heading ist selbst Container, seine @container-Regel greift dort nicht. Siehe docs/design-system-hinweise.md */
 @media (max-width: 767px) {

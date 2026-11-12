@@ -29,6 +29,7 @@ Monochrome by design, with one brass accent. Four brand values, two grounds.
 - The ratio stays roughly 90 % monochrome, 9 % hairline grey, 1 % brass. If you notice the accent, there is too much of it.
 - `steel` is for illustration only (metallic renders, diagram fills). No gradients.
 - Never pure `#000` or `#fff` as a page ground.
+- The neutrals are slightly warm, not pure grey (`paper` #f3f1ec, `ink` #0b0a09, warm `graphite` / `ash` / hairlines). This keeps the monochrome look but takes the coldness out; do not drift back to neutral greys or further towards beige.
 
 ## Typography
 

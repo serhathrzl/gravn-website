@@ -4,14 +4,14 @@
 @font-face { font-family: 'Geist Mono'; src: url('./fonts/GeistMono-Variable.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
 
 :root, [data-theme="light"] {
-  --ink: #080808;
-  --paper: #f1f1f1;
+  --ink: #0b0a09;
+  --paper: #f3f1ec;
   --white: #ffffff;
-  --graphite: #626262;
-  --ash: #9a9a9a;
-  --carbon: #141414;
-  --hairline-paper: #d4d4d4;
-  --hairline-ink: #2a2a2a;
+  --graphite: #625f59;
+  --ash: #a19d96;
+  --carbon: #171614;
+  --hairline-paper: #d9d5cd;
+  --hairline-ink: #2c2a27;
   --brass: #c9a96e;
   --brass-deep: #7a5f30;
   --steel: #b9bcc0;
