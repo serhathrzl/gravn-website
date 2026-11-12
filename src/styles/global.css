@@ -143,3 +143,24 @@ main:focus { outline: none; }
 .two-col .lead { margin: 0; max-width: var(--measure); color: var(--text-secondary); }
 @media (max-width: 767px) { .two-col { grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-6); } }
 .two-col + .gv-btn { margin-top: var(--space-6); }
+
+/* Scroll-Geschichte der Startseite. Ohne story.js (kein WebGL, reduzierte Bewegung, kleine Bildschirme)
+   bleibt die statische Ansicht mit den Illustrationen. Mit Bühne setzt story.js die Klasse "story-on". */
+.story { position: relative; }
+.story-stage { display: none; }
+.story-stage canvas { display: block; width: 100%; height: 100%; }
+.chapter { position: relative; z-index: 1; }
+.chapter-step { padding-block: var(--space-9); }
+.chapter-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-8); align-items: center; }
+.chapter-text { display: grid; gap: var(--space-5); justify-items: start; }
+.chapter-text .heading-1, .chapter-text .lead, .chapter-text .gv-eyebrow { margin: 0; }
+.chapter-text .lead { color: var(--text-secondary); max-width: var(--measure); }
+.chapter-fallback { aspect-ratio: 4 / 3; background: var(--surface-raised); overflow: hidden; }
+@media (max-width: 767px) { .chapter-grid { grid-template-columns: 1fr; gap: var(--space-6); } .chapter-step { padding-block: var(--space-8); } }
+
+.story-on .story-stage { display: block; position: sticky; top: 0; height: 100vh; margin-bottom: -100vh; z-index: 0; pointer-events: none; }
+.story-on .chapter-intro { min-height: calc(100vh - var(--header-height)); }
+.story-on .chapter-intro .hero-text { grid-template-columns: 1fr; max-width: 520px; gap: var(--space-4); }
+.story-on .chapter-step { min-height: 125vh; display: flex; align-items: center; padding-block: 0; }
+.story-on .chapter-step > .container { width: 100%; }
+.story-on .chapter-fallback { visibility: hidden; }

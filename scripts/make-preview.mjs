@@ -32,6 +32,7 @@ for (const f of walk(out).filter((x) => x.endsWith('.html'))) {
   h = h.replace(/<link rel="preload"[^>]*>/g, '');
   h = h.replace(/<script defer src="([^"]+\.js)"><\/script>/g, (_, p) => {
     const file = path.join(out, '_astro', path.basename(p));
+    if (!fs.existsSync(file)) return _; // z. B. story.js liegt neben der Seite und bleibt eine eigene Datei
     return `<script>${fs.readFileSync(file, 'utf8')}</script>`;
   });
   fs.writeFileSync(f, h);

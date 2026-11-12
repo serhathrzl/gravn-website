@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
+    "dev": "node scripts/build-story.mjs && astro dev",
+    "build": "node scripts/build-story.mjs && astro check && astro build",
     "preview": "astro preview",
     "vorschau": "npm run build && node scripts/make-preview.mjs"
   },
@@ -13,6 +13,10 @@
     "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.4.0",
+    "three": "^0.187.0",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/three": "^0.187.0"
   }
 }

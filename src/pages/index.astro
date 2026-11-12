@@ -2,52 +2,81 @@
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 import ProcessStep from '../components/ProcessStep.astro';
 import { processSteps } from '../data/process';
 import Illustration from '../components/Illustration.astro';
 import imgWebsites from '../assets/illustrations/websites.png';
 import imgMarketing from '../assets/illustrations/marketing.png';
 import imgKi from '../assets/illustrations/ki.png';
+
+// Kapitel 2 bis 4 der Scroll-Geschichte. Die id muss zu einem Schlüsselbild in src/scripts/story/timeline.ts passen.
+const disciplines = [
+  {
+    id: 'websites', index: '01', title: 'Websites & Webdesign', href: '/websites', cta: 'Mehr zu Websites',
+    tags: ['Design', 'Entwicklung', 'Optimierung'],
+    text: 'Wir gestalten und entwickeln Websites, die dein Angebot verständlich machen, Vertrauen schaffen und den Weg zur Anfrage erleichtern. Durchdacht im Design, intuitiv in der Bedienung und auf jedem Gerät überzeugend.',
+    image: imgWebsites, alt: 'Isometrische Illustration: drei übereinanderliegende Ebenen für Design, Entwicklung und Optimierung einer Website',
+  },
+  {
+    id: 'marketing', index: '02', title: 'Marketing & Social Media', href: '/marketing', cta: 'Mehr zu Marketing',
+    tags: ['Strategie', 'Inhalte', 'Kanäle'],
+    text: 'Wir machen sichtbar, was dein Unternehmen auszeichnet. Mit einer klaren Strategie, relevanten Inhalten und gezielten Kampagnen sprechen wir die Menschen an, die zu deinem Angebot passen.',
+    image: imgMarketing, alt: 'Isometrische Illustration: Strategie, Inhalte und Kanäle als Plattform mit Signalen, die Menschen erreichen',
+  },
+  {
+    id: 'ki', index: '03', title: 'KI & Automatisierung', href: '/ki-automatisierung', cta: 'Mehr zu KI',
+    tags: ['Workflows', 'Assistenten', 'Beratung'],
+    text: 'Wir verbinden deine Systeme, automatisieren wiederkehrende Aufgaben und integrieren digitale Assistenten in deinen Arbeitsalltag. Mit passender Beratung und einer Umsetzung, die dein Team entlastet.',
+    image: imgKi, alt: 'Isometrische Illustration: Fließband mit automatisiertem Ablauf, Assistent und Ablaufdiagramm für KI und Automatisierung',
+  },
+];
 ---
 <Base
   title="GRAVN Digital – Websites, Marketing und KI für wachsende Marken"
   description="Wir bauen Websites, machen Marken sichtbar und nehmen dir Routine ab. Drei Disziplinen, ein Ansprechpartner."
 >
-  <section class="hero section">
-    <div class="container">
-      <p class="eyebrow">Websites / Marketing / AI</p>
-      <h1 class="display">Digital denken.<br />Mehr bewegen<span class="gv-accent">.</span></h1>
-      <div class="two-col hero-text">
-        <p class="lead">Wir entwickeln Websites, die überzeugen, stärken deine Sichtbarkeit mit Marketing und Social Media und vereinfachen deine Abläufe mit KI.</p>
-        <p class="lead">Von der ersten Idee bis zur Umsetzung begleiten wir dich mit Lösungen, die zu deinem Unternehmen, deinen Zielen und deinem Team passen.</p>
-      </div>
-      <div class="hero-actions">
-        <Button href="/kontakt">Projekt besprechen</Button>
-        <Button variant="link" href="#leistungen">Leistungen entdecken</Button>
-      </div>
-    </div>
-  </section>
+  <div class="story">
+    <div class="story-stage" aria-hidden="true"><canvas id="story-canvas"></canvas></div>
 
-  <section class="section" id="leistungen" aria-labelledby="leistungen-title">
-    <div class="container">
-      <SectionHeading index="01" eyebrow="Unsere Expertise">
-        <Fragment slot="title"><span id="leistungen-title">Drei Disziplinen.<br />Ein klarer Anspruch.</span></Fragment>
-        <Fragment slot="intro">Ein überzeugender Auftritt, mehr Sichtbarkeit und einfachere Abläufe. Wir verbinden Webdesign, Marketing und KI zu Lösungen, die zusammenpassen und dein Unternehmen weiterbringen.</Fragment>
-      </SectionHeading>
-      <div class="grid-3">
-        <ServiceCard index="01" title="Websites & Webdesign" text="Wir gestalten und entwickeln Websites, die dein Angebot verständlich machen, Vertrauen schaffen und den Weg zur Anfrage erleichtern. Durchdacht im Design, intuitiv in der Bedienung und auf jedem Gerät überzeugend." tags={['Design', 'Entwicklung', 'Optimierung']} href="/websites">
-          <Illustration slot="visual" zoom="mobile" src={imgWebsites} alt="Isometrische Illustration: drei übereinanderliegende Ebenen für Design, Entwicklung und Optimierung einer Website" />
-        </ServiceCard>
-        <ServiceCard index="02" title="Marketing & Social Media" text="Wir machen sichtbar, was dein Unternehmen auszeichnet. Mit einer klaren Strategie, relevanten Inhalten und gezielten Kampagnen sprechen wir die Menschen an, die zu deinem Angebot passen." tags={['Strategie', 'Inhalte', 'Kanäle']} href="/marketing">
-          <Illustration slot="visual" zoom="mobile" src={imgMarketing} alt="Isometrische Illustration: Strategie, Inhalte und Kanäle als Plattform mit Signalen, die Menschen erreichen" />
-        </ServiceCard>
-        <ServiceCard index="03" title="KI & Automatisierung" text="Wir verbinden deine Systeme, automatisieren wiederkehrende Aufgaben und integrieren digitale Assistenten in deinen Arbeitsalltag. Mit passender Beratung und einer Umsetzung, die dein Team entlastet." tags={['Workflows', 'Assistenten', 'Beratung']} href="/ki-automatisierung">
-          <Illustration slot="visual" zoom="mobile" src={imgKi} alt="Isometrische Illustration: Fließband mit automatisiertem Ablauf, Assistent und Ablaufdiagramm für KI und Automatisierung" />
-        </ServiceCard>
+    <section class="hero chapter chapter-intro" data-chapter="intro">
+      <div class="container">
+        <p class="eyebrow">Websites / Marketing / AI</p>
+        <h1 class="display">Digital denken.<br />Mehr bewegen<span class="gv-accent">.</span></h1>
+        <div class="two-col hero-text">
+          <p class="lead">Wir entwickeln Websites, die überzeugen, stärken deine Sichtbarkeit mit Marketing und Social Media und vereinfachen deine Abläufe mit KI.</p>
+          <p class="lead">Von der ersten Idee bis zur Umsetzung begleiten wir dich mit Lösungen, die zu deinem Unternehmen, deinen Zielen und deinem Team passen.</p>
+        </div>
+        <div class="hero-actions">
+          <Button href="/kontakt">Projekt besprechen</Button>
+          <Button variant="link" href="#leistungen">Leistungen entdecken</Button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="chapter chapter-step" data-chapter="disziplinen" id="leistungen" aria-labelledby="leistungen-title">
+      <div class="container chapter-grid">
+        <div class="chapter-text">
+          <p class="gv-eyebrow"><span class="gv-eyebrow-index">01</span><span aria-hidden="true"> / </span>Unsere Expertise</p>
+          <h2 class="heading-1" id="leistungen-title">Drei Disziplinen.<br />Ein klarer Anspruch.</h2>
+          <p class="lead">Ein überzeugender Auftritt, mehr Sichtbarkeit und einfachere Abläufe. Wir verbinden Webdesign, Marketing und KI zu Lösungen, die zusammenpassen und dein Unternehmen weiterbringen.</p>
+        </div>
+      </div>
+    </section>
+
+    {disciplines.map((d) => (
+      <section class="chapter chapter-step" data-chapter={d.id} aria-labelledby={`${d.id}-title`}>
+        <div class="container chapter-grid">
+          <div class="chapter-text">
+            <p class="gv-eyebrow"><span class="gv-eyebrow-index">{d.index}</span><span aria-hidden="true"> / </span>{d.tags.join(' / ')}</p>
+            <h3 class="heading-1" id={`${d.id}-title`}>{d.title}</h3>
+            <p class="lead">{d.text}</p>
+            <Button variant="secondary" href={d.href}>{d.cta}</Button>
+          </div>
+          <div class="chapter-fallback"><Illustration zoom="mobile" src={d.image} alt={d.alt} /></div>
+        </div>
+      </section>
+    ))}
+  </div>
 
   <section class="section" data-theme="dark" aria-labelledby="zusammen-title">
     <div class="container">
@@ -96,4 +125,5 @@ import imgKi from '../assets/illustrations/ki.png';
       <Button href="/kontakt">Projekt besprechen</Button>
     </div>
   </section>
+  <script is:inline defer src="/story.js"></script>
 </Base>
