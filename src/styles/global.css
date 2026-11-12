@@ -31,19 +31,35 @@ main { display: block; }
 
 .hero { padding-block: var(--space-10) var(--space-9); }
 .hero .eyebrow { margin: 0 0 var(--space-6); color: var(--text-secondary); }
-.hero h1 { margin: 0; max-width: 14ch; text-wrap: balance; }
+.hero h1 { margin: 0; text-wrap: balance; }
+/* Hero-Text nutzt die volle Breite: Startseite zwei gleiche Spalten, Leistungsseiten Text links und Button rechts. */
+.hero-text { margin-top: var(--space-8); }
 .hero-lower { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-6); margin-top: var(--space-8); align-items: end; }
-.hero-lower .lead { margin: 0; max-width: var(--measure); color: var(--text-secondary); }
+.hero-lower .lead { margin: 0; max-width: 720px; color: var(--text-secondary); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); margin-top: var(--space-6); }
-@media (max-width: 767px) { .hero { padding-block: var(--space-9); } .hero-lower { grid-template-columns: 1fr; margin-top: var(--space-7); } }
+.hero-actions-end { margin-top: 0; justify-content: flex-end; }
+@media (max-width: 767px) { .hero { padding-block: var(--space-9); } .hero-text { margin-top: var(--space-7); } .hero-lower { grid-template-columns: 1fr; margin-top: var(--space-7); } .hero-actions-end { justify-content: flex-start; } }
 
 .service-visual { width: 100%; height: 100%; display: block; }
 .note { margin: var(--space-6) 0 0; max-width: var(--measure); font: 400 15px/23px var(--font-sans); color: var(--text-secondary); }
 .about-text { margin: var(--space-5) 0 var(--space-4); max-width: var(--measure); color: var(--text-secondary); }
 .placeholder { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); border: var(--hairline) dashed var(--line-strong); padding: var(--space-2) var(--space-3); display: inline-block; }
-.cta-block { text-align: left; }
+/* Abschluss-CTA zentriert (laut Designsystem die einzige erlaubte Zentrierung) */
+.cta-block { text-align: center; }
 .cta-block .display-cta { margin: 0 0 var(--space-7); text-wrap: balance; }
-.cta-block .lead { max-width: var(--measure); color: var(--text-secondary); margin: 0 0 var(--space-6); }
+.cta-block .heading-1 { margin-inline: auto !important; text-wrap: balance; }
+.cta-block .lead { max-width: var(--measure); color: var(--text-secondary); margin: 0 auto var(--space-6); }
+
+/* VORSCHAU Wärme: Neutraltöne leicht warm statt reines Grau. Bei Freigabe in design-system/tokens.json übernehmen. */
+:root {
+  --ink: #0b0a09;
+  --paper: #f3f1ec;
+  --graphite: #625f59;
+  --ash: #a19d96;
+  --carbon: #171614;
+  --hairline-paper: #d9d5cd;
+  --hairline-ink: #2c2a27;
+}
 
 /* Workaround: .gv-section-heading ist selbst Container, seine @container-Regel greift dort nicht. Siehe docs/design-system-hinweise.md */
 @media (max-width: 767px) {

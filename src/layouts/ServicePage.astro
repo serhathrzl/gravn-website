@@ -28,10 +28,8 @@ const [h1a, h1b] = headline.split('|');
       <p class="eyebrow">{eyebrow}</p>
       <h1 class="display">{h1a}<br />{h1b}</h1>
       <div class="hero-lower">
-        <div>
-          <p class="lead">{intro}</p>
-          <div class="hero-actions"><Button href="/kontakt">Projekt besprechen</Button></div>
-        </div>
+        <p class="lead">{intro}</p>
+        <div class="hero-actions hero-actions-end"><Button href="/kontakt">Projekt besprechen</Button></div>
       </div>
       {image && <div class="illustration-wide"><Illustration src={image.src} alt={image.alt} size="wide" zoom="always" loading="eager" /></div>}
     </div>
