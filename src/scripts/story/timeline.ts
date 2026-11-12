@@ -26,6 +26,7 @@ export const frames: Record<string, Frame> = {
   websites: { gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, cy: 0.5, rot: 0.2, ty: FOCUS_GAP, op: [1, DIM, DIM] },
   marketing: { gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, cy: 0.5, rot: 0.45, ty: 0, op: [DIM, 1, DIM] },
   ki: { gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, cy: 0.5, rot: 0.7, ty: -FOCUS_GAP, op: [DIM, DIM, 1] },
+  outro: { gap: 0.5, zoom: 0.7, cx: 0.5, cy: 0.5, rot: 1.1, ty: 0, op: [0.1, 0.1, 0.1] },
 };
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
