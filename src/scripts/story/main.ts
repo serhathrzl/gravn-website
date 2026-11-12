@@ -42,6 +42,19 @@ function boot() {
   for (const p of plates) object.add(p.group);
   scene.add(object);
 
+  // Verbindungslinien zwischen den Ebenen (Kapitel Zusammenspiel); Höhe wird mit dem Abstand skaliert.
+  const linkMaterial = new THREE.LineBasicMaterial({ color: cssVar('--ink', '#0b0a09'), transparent: true, opacity: 0 });
+  const links = new THREE.Group();
+  for (const [x, z] of [[1.75, 1.2], [-1.75, 1.2], [1.75, -1.2], [-1.75, -1.2]]) {
+    const geo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, -1, z), new THREE.Vector3(x, 1, z)]);
+    links.add(new THREE.Line(geo, linkMaterial));
+  }
+  object.add(links);
+
+  const nav = story.querySelector<HTMLElement>('.chapter-nav');
+  const navLinks = nav ? Array.from(nav.querySelectorAll<HTMLAnchorElement>('a')) : [];
+  let activeChapter = -1;
+
   let width = 0;
   let height = 0;
   function resize() {
@@ -69,6 +82,9 @@ function boot() {
       setOpacity(p, f.op[i]);
     });
     object.rotation.y = f.rot + Math.sin(time * 0.0004) * 0.04;
+    links.scale.y = f.gap;
+    links.visible = f.link > 0.01;
+    linkMaterial.opacity = f.link;
 
     const h = VIEW / f.zoom;
     const w = h * (width / height);
@@ -87,7 +103,15 @@ function boot() {
     if (document.hidden) return;
     const r = story!.getBoundingClientRect();
     if (r.bottom < 0 || r.top > window.innerHeight) return;
-    current = mix(current, sample(order, progress()), 0.09);
+    const t = progress();
+    const mid = window.innerHeight / 2;
+    nav?.classList.toggle('is-visible', r.top < mid && r.bottom > mid);
+    const chapter = Math.min(chapters.length - 1, Math.floor(t));
+    if (chapter !== activeChapter) {
+      activeChapter = chapter;
+      navLinks.forEach((a, i) => (i === chapter ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+    }
+    current = mix(current, sample(order, t), 0.09);
     apply(current, time);
     renderer.render(scene, camera);
   }

@@ -30,6 +30,24 @@ const disciplines = [
     image: imgKi, alt: 'Isometrische Illustration: Fließband mit automatisiertem Ablauf, Assistent und Ablaufdiagramm für KI und Automatisierung',
   },
 ];
+
+const together = [
+  { title: 'Auftritt stärken', text: 'Eine Website, die dein Unternehmen auf den Punkt bringt und den Weg zur Kontaktaufnahme einfach macht.' },
+  { title: 'Menschen erreichen', text: 'Inhalte und Kampagnen, die deine Zielgruppe ansprechen und Interesse an deinem Angebot wecken.' },
+  { title: 'Arbeit erleichtern', text: 'Intelligente Werkzeuge und automatisierte Abläufe, die wiederkehrende Aufgaben übernehmen und dein Team entlasten.' },
+];
+
+// Kapitelmenü am Rand; Reihenfolge wie die Abschnitte mit data-chapter.
+const chapterNav = [
+  { id: 'start', label: 'Start' },
+  { id: 'leistungen', label: 'Drei Disziplinen' },
+  { id: 'websites', label: 'Websites' },
+  { id: 'marketing', label: 'Marketing' },
+  { id: 'ki', label: 'KI' },
+  { id: 'zusammenspiel', label: 'Zusammenspiel' },
+  { id: 'ablauf', label: 'So arbeiten wir' },
+  { id: 'ueber', label: 'Über GRAVN' },
+];
 ---
 <Base
   title="GRAVN Digital – Websites, Marketing und KI für wachsende Marken"
@@ -38,7 +56,7 @@ const disciplines = [
   <div class="story">
     <div class="story-stage" aria-hidden="true"><canvas id="story-canvas"></canvas></div>
 
-    <section class="hero chapter chapter-intro" data-chapter="intro">
+    <section class="hero chapter chapter-intro" data-chapter="intro" id="start">
       <div class="container">
         <p class="eyebrow">Websites / Marketing / AI</p>
         <h1 class="display">Digital denken.<br />Mehr bewegen<span class="gv-accent">.</span></h1>
@@ -64,7 +82,7 @@ const disciplines = [
     </section>
 
     {disciplines.map((d) => (
-      <section class="chapter chapter-step" data-chapter={d.id} aria-labelledby={`${d.id}-title`}>
+      <section class="chapter chapter-step" data-chapter={d.id} id={d.id} aria-labelledby={`${d.id}-title`}>
         <div class="container chapter-grid">
           <div class="chapter-text">
             <p class="gv-eyebrow"><span class="gv-eyebrow-index">{d.index}</span><span aria-hidden="true"> / </span>{d.tags.join(' / ')}</p>
@@ -77,48 +95,56 @@ const disciplines = [
       </section>
     ))}
 
-    <!-- Ausklang: leerer Abschnitt, in dem die Ebenen zusammenklappen und zum Wasserzeichen verblassen -->
-    <div class="chapter chapter-outro" data-chapter="outro" aria-hidden="true"></div>
-  </div>
-
-  <section class="section" data-theme="dark" aria-labelledby="zusammen-title">
-    <div class="container">
-      <SectionHeading index="02" eyebrow="Zusammenspiel">
-        <Fragment slot="title"><span id="zusammen-title">Gut für sich.<br />Besser zusammen.</span></Fragment>
-        <Fragment slot="intro">Deine Website erklärt dein Angebot. Dein Marketing bringt die passenden Menschen dorthin. KI und Automatisierung helfen dir, Anfragen und Aufgaben effizient zu bearbeiten. Wir stimmen diese Bereiche aufeinander ab, damit aus einzelnen Maßnahmen ein durchdachter Gesamtauftritt entsteht.</Fragment>
-      </SectionHeading>
-      <ol class="grid-3" style="padding:0;list-style:none">
-        <ProcessStep number="01" title="Auftritt stärken" text="Eine Website, die dein Unternehmen auf den Punkt bringt und den Weg zur Kontaktaufnahme einfach macht." />
-        <ProcessStep number="02" title="Menschen erreichen" text="Inhalte und Kampagnen, die deine Zielgruppe ansprechen und Interesse an deinem Angebot wecken." />
-        <ProcessStep number="03" title="Arbeit erleichtern" text="Intelligente Werkzeuge und automatisierte Abläufe, die wiederkehrende Aufgaben übernehmen und dein Team entlasten." />
-      </ol>
-      <p class="note">Du startest dort, wo du Unterstützung brauchst. Wir behalten das Ganze im Blick und entwickeln deinen nächsten Schritt gemeinsam mit dir.</p>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="ablauf-title">
-    <div class="container">
-      <SectionHeading index="03" eyebrow="So arbeiten wir">
-        <Fragment slot="title"><span id="ablauf-title">Klar im Ablauf.<br />Offen im Austausch.</span></Fragment>
-      </SectionHeading>
-      <ol class="grid-4">
-        {processSteps.map((s) => <ProcessStep {...s} />)}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="about-title" style="padding-top:0">
-    <div class="container">
-      <SectionHeading index="04" eyebrow="Über GRAVN">
-        <Fragment slot="title"><span id="about-title">Unternehmerisch denken.<br />Digital umsetzen.</span></Fragment>
-      </SectionHeading>
-      <div class="two-col">
-        <p class="lead">GRAVN verbindet Unternehmensberatung, Design und Technologie. Wir bringen Erfahrung aus Unternehmens- und SAP-Beratung, Webdesign, KI, Marketing und Social Media zusammen.</p>
-        <p class="lead">Gemeinsam unterstützen wir Unternehmen dabei, ihren digitalen Auftritt zu stärken, passende Kunden zu erreichen und Arbeitsabläufe zu verbessern.</p>
+    <section class="chapter chapter-step" data-chapter="zusammenspiel" id="zusammenspiel" aria-labelledby="zusammen-title">
+      <div class="container chapter-grid">
+        <div class="chapter-text">
+          <p class="gv-eyebrow"><span class="gv-eyebrow-index">02</span><span aria-hidden="true"> / </span>Zusammenspiel</p>
+          <h2 class="heading-1" id="zusammen-title">Gut für sich.<br />Besser zusammen.</h2>
+          <p class="lead">Deine Website erklärt dein Angebot. Dein Marketing bringt die passenden Menschen dorthin. KI und Automatisierung helfen dir, Anfragen und Aufgaben effizient zu bearbeiten. Wir stimmen diese Bereiche aufeinander ab, damit aus einzelnen Maßnahmen ein durchdachter Gesamtauftritt entsteht.</p>
+          <ol class="chapter-list">
+            {together.map((t, i) => (
+              <li>
+                <span class="chapter-list-index">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 class="gv-step-title">{t.title}</h3>
+                  <p class="gv-step-text">{t.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p class="note">Du startest dort, wo du Unterstützung brauchst. Wir behalten das Ganze im Blick und entwickeln deinen nächsten Schritt gemeinsam mit dir.</p>
+        </div>
       </div>
-      <Button variant="link" href="/ueber-uns">Mehr über uns</Button>
-    </div>
-  </section>
+    </section>
+
+    <section class="chapter chapter-step" data-chapter="ablauf" id="ablauf" aria-labelledby="ablauf-title">
+      <div class="container">
+        <SectionHeading index="03" eyebrow="So arbeiten wir">
+          <Fragment slot="title"><span id="ablauf-title">Klar im Ablauf.<br />Offen im Austausch.</span></Fragment>
+        </SectionHeading>
+        <ol class="grid-4">
+          {processSteps.map((s) => <ProcessStep {...s} />)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="chapter chapter-step" data-chapter="ueber" id="ueber" aria-labelledby="about-title">
+      <div class="container">
+        <SectionHeading index="04" eyebrow="Über GRAVN">
+          <Fragment slot="title"><span id="about-title">Unternehmerisch denken.<br />Digital umsetzen.</span></Fragment>
+        </SectionHeading>
+        <div class="two-col">
+          <p class="lead">GRAVN verbindet Unternehmensberatung, Design und Technologie. Wir bringen Erfahrung aus Unternehmens- und SAP-Beratung, Webdesign, KI, Marketing und Social Media zusammen.</p>
+          <p class="lead">Gemeinsam unterstützen wir Unternehmen dabei, ihren digitalen Auftritt zu stärken, passende Kunden zu erreichen und Arbeitsabläufe zu verbessern.</p>
+        </div>
+        <Button variant="link" href="/ueber-uns">Mehr über uns</Button>
+      </div>
+    </section>
+
+    <nav class="chapter-nav" aria-label="Kapitel der Startseite">
+      {chapterNav.map((c) => <a href={`#${c.id}`}><span class="chapter-nav-label">{c.label}</span><span class="chapter-nav-dot" aria-hidden="true"></span></a>)}
+    </nav>
+  </div>
 
   <section class="section" data-theme="dark" aria-labelledby="cta-title">
     <div class="container cta-block">
