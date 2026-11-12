@@ -16,7 +16,8 @@ function boot() {
   const canvas = document.querySelector<HTMLCanvasElement>('#story-canvas');
   if (!story || !canvas) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(max-width: 1023px)').matches) return; // Prototyp: Bühne nur auf großen Bildschirmen
+  const wide = window.matchMedia('(min-width: 1024px)'); // Bühne nur auf großen Bildschirmen, sonst statische Ansicht
+  if (!wide.matches) return;
 
   const chapters = Array.from(story.querySelectorAll<HTMLElement>('[data-chapter]'));
   const order = chapters.map((c) => frames[c.dataset.chapter ?? '']).filter(Boolean) as Frame[];
@@ -57,13 +58,15 @@ function boot() {
 
   let width = 0;
   let height = 0;
+  const root = document.documentElement;
+  let stopped = false;
   function resize() {
+    if (!canvas!.clientWidth || !canvas!.clientHeight) return;
     width = canvas!.clientWidth;
     height = canvas!.clientHeight;
     renderer.setSize(width, height, false);
   }
-  resize();
-  new ResizeObserver(resize).observe(canvas);
+  new ResizeObserver(resize).observe(document.body);
 
   /** Kapitelnummer + Fortschritt, gemessen an der Bildschirmmitte. */
   function progress() {
@@ -97,10 +100,17 @@ function boot() {
     camera.updateProjectionMatrix();
   }
 
+  // Die Grafikkarte steigt aus: zurück zur statischen Ansicht.
+  canvas.addEventListener('webglcontextlost', () => {
+    stopped = true;
+    root.classList.remove('story-on');
+  });
+
   let current = sample(order, progress());
   function tick(time: number) {
+    if (stopped) return;
     requestAnimationFrame(tick);
-    if (document.hidden) return;
+    if (document.hidden || !wide.matches) return; // schmal: das CSS zeigt die statische Ansicht
     const r = story!.getBoundingClientRect();
     if (r.bottom < 0 || r.top > window.innerHeight) return;
     const t = progress();
@@ -116,8 +126,16 @@ function boot() {
     renderer.render(scene, camera);
   }
 
-  document.documentElement.classList.add('story-on');
+  root.classList.add('story-on');
   resize();
+  try {
+    apply(current, 0);
+    renderer.render(scene, camera);
+  } catch {
+    stopped = true;
+    root.classList.remove('story-on');
+    return;
+  }
   requestAnimationFrame(tick);
 }
 

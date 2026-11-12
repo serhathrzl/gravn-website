@@ -158,14 +158,6 @@ main:focus { outline: none; }
 .chapter-fallback { aspect-ratio: 4 / 3; background: var(--surface-raised); overflow: hidden; }
 @media (max-width: 767px) { .chapter-grid { grid-template-columns: 1fr; gap: var(--space-6); } .chapter-step { padding-block: var(--space-8); } }
 
-/* Die Bühne füllt die ganze Geschichte; das Canvas haftet darin am Bildschirm und endet mit ihr. */
-.story-on .story-stage { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.story-on .story-stage canvas { position: sticky; top: 0; height: 100vh; }
-.story-on .chapter-intro { min-height: calc(100vh - var(--header-height)); }
-.story-on .chapter-intro .hero-text { grid-template-columns: 1fr; max-width: 520px; gap: var(--space-4); }
-.story-on .chapter-step { min-height: 125vh; display: flex; align-items: center; padding-block: 0; }
-.story-on .chapter-step > .container { width: 100%; }
-.story-on .chapter-fallback { visibility: hidden; }
 
 /* Liste im Kapitel Zusammenspiel */
 .chapter-list { list-style: none; margin: 0; padding: 0; width: 100%; max-width: var(--measure); }
@@ -177,8 +169,6 @@ main:focus { outline: none; }
 
 /* Kapitelmenü: nur mit Bühne, rechts im Seitenrand */
 .chapter-nav { display: none; }
-.story-on .chapter-nav { position: fixed; right: var(--space-5); top: 50%; z-index: 4; display: grid; gap: var(--space-1); transform: translateY(-50%); opacity: 0; visibility: hidden; transition: opacity var(--gv-dur) var(--gv-ease), visibility var(--gv-dur); }
-.story-on .chapter-nav.is-visible { opacity: 1; visibility: visible; }
 .chapter-nav a { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-3); min-height: 24px; color: var(--text-secondary); text-decoration: none; }
 .chapter-nav-dot { width: 7px; height: 7px; border: var(--hairline) solid var(--line-strong); flex: none; transition: background-color var(--gv-dur) var(--gv-ease), border-color var(--gv-dur) var(--gv-ease); }
 .chapter-nav-label { font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; opacity: 0; transition: opacity var(--gv-dur) var(--gv-ease); }
@@ -186,5 +176,18 @@ main:focus { outline: none; }
 .chapter-nav a[aria-current="true"] { color: var(--text); }
 .chapter-nav a[aria-current="true"] .chapter-nav-dot, .chapter-nav a:hover .chapter-nav-dot { background: var(--text); border-color: var(--text); }
 .chapter-nav a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
-html.story-on { scroll-behavior: smooth; }
-.story-on .chapter-step .gv-section-heading + .grid-4, .story-on .chapter-step .gv-section-heading + .two-col { margin-top: var(--space-7); }
+
+/* Bühnen-Ansicht: nur auf großen Bildschirmen und nur, wenn story.js läuft (Klasse "story-on"). */
+@media (min-width: 1024px) {
+  .story-on .story-stage { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .story-on .story-stage canvas { position: sticky; top: 0; height: 100vh; }
+  .story-on .chapter-intro { min-height: calc(100vh - var(--header-height)); }
+  .story-on .chapter-intro .hero-text { grid-template-columns: 1fr; max-width: 520px; gap: var(--space-4); }
+  .story-on .chapter-step { min-height: 125vh; display: flex; align-items: center; padding-block: 0; }
+  .story-on .chapter-step > .container { width: 100%; }
+  .story-on .chapter-fallback { visibility: hidden; }
+  .story-on .chapter-nav { position: fixed; right: var(--space-5); top: 50%; z-index: 4; display: grid; gap: var(--space-1); transform: translateY(-50%); opacity: 0; visibility: hidden; transition: opacity var(--gv-dur) var(--gv-ease), visibility var(--gv-dur); }
+  .story-on .chapter-nav.is-visible { opacity: 1; visibility: visible; }
+  html.story-on { scroll-behavior: smooth; }
+  .story-on .chapter-step .gv-section-heading + .grid-4, .story-on .chapter-step .gv-section-heading + .two-col { margin-top: var(--space-7); }
+}

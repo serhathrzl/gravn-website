@@ -154,5 +154,20 @@ const chapterNav = [
       <Button href="/kontakt">Projekt besprechen</Button>
     </div>
   </section>
-  <script is:inline defer src="/story.js"></script>
+  <script>
+    // Lädt die 3D-Bühne nur, wenn sie gebraucht wird: großer Bildschirm und Bewegung nicht reduziert.
+    // Handys und Nutzer mit reduzierter Bewegung laden die Datei gar nicht erst.
+    const wide = window.matchMedia('(min-width: 1024px)');
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let requested = false;
+    function load() {
+      if (requested || !wide.matches || calm.matches) return;
+      requested = true;
+      const s = document.createElement('script');
+      s.src = new URL('story.js', document.baseURI).href;
+      document.head.appendChild(s);
+    }
+    load();
+    wide.addEventListener('change', load);
+  </script>
 </Base>
