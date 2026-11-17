@@ -93,7 +93,10 @@ main { display: block; }
 .page-head h1 { margin: 0; text-wrap: balance; }
 
 /* Header-Untermenü (Erweiterung): öffnet per Hover und Tastaturfokus */
-.gv-header { position: relative; z-index: 5; }
+/* Kopfzeile bleibt beim Scrollen oben sichtbar; Sprungziele landen darunter statt dahinter. */
+.gv-header { position: sticky; top: 0; z-index: 10; }
+html { scroll-padding-top: var(--header-height); }
+@media (max-width: 767px) { html { scroll-padding-top: 64px; } }
 .gv-nav-item { position: relative; display: flex; }
 .gv-nav-sub { position: absolute; top: 100%; left: calc(var(--space-5) * -1); min-width: 320px; display: none; flex-direction: column; padding: var(--space-3) var(--space-5) var(--space-4); background: var(--surface); border: var(--hairline) solid var(--line); }
 .gv-nav-item:hover .gv-nav-sub, .gv-nav-item:focus-within .gv-nav-sub { display: flex; }
@@ -180,7 +183,7 @@ main:focus { outline: none; }
 /* Bühnen-Ansicht: nur auf großen Bildschirmen und nur, wenn story.js läuft (Klasse "story-on"). */
 @media (min-width: 1024px) {
   .story-on .story-stage { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-  .story-on .story-stage canvas { position: sticky; top: 0; height: 100vh; }
+  .story-on .story-stage canvas { position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height)); }
   .story-on .chapter-intro { min-height: calc(100vh - var(--header-height)); }
   .story-on .chapter-intro .hero-text { grid-template-columns: 1fr; max-width: 520px; gap: var(--space-4); }
   .story-on .chapter-step { min-height: 125vh; display: flex; align-items: center; padding-block: 0; }
