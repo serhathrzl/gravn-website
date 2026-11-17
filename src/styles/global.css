@@ -111,17 +111,7 @@ main { display: block; }
 main:focus { outline: none; }
 
 /* Personen (Über uns) */
-/* Personen: zwei gleiche Hälften, je Foto links (4:5) und Text rechts, unten bündig */
-.people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-7); }
-.person { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-5); align-items: end; padding-bottom: var(--space-5); border-bottom: var(--hairline) solid var(--line); }
-.person-body { display: grid; gap: var(--space-3); }
-.person-body > * { margin: 0; }
-.person-photo { aspect-ratio: 4 / 5; overflow: hidden; background: var(--surface-raised); }
-.person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); }
-.person-photo.is-placeholder { display: grid; place-content: center; justify-items: center; gap: var(--space-3); border: var(--hairline) solid var(--line); color: var(--text-secondary); font: 400 11px/16px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
 .team-intro { margin: var(--space-6) 0 0; max-width: var(--measure); color: var(--text-secondary); }
-@media (max-width: 1023px) { .people { grid-template-columns: 1fr; } }
-@media (max-width: 479px) { .person { grid-template-columns: 1fr; } .person-photo { max-width: 280px; } }
 
 /* Illustrationen (Bilder Website) */
 .illustration { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -144,7 +134,7 @@ main:focus { outline: none; }
 .lightbox-close:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 
 /* Messing nur für Abschnitts- und Kartenindizes (Markenregel): Listennummern und Personenrollen in Grau */
-.rows .gv-eyebrow-index, .person .gv-service-index { color: var(--text-secondary); }
+.rows .gv-eyebrow-index { color: var(--text-secondary); }
 
 /* Zwei Textspalten (Über uns) */
 .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-7); }
@@ -209,6 +199,7 @@ main:focus { outline: none; }
 /* Zwei nummerierte Spalten mit Haarlinie (Über uns, Zusammenarbeit) */
 .two-col-numbered { list-style: none; padding: 0; }
 .two-col-numbered li { display: grid; gap: var(--space-4); align-content: start; padding-top: var(--space-5); border-top: var(--hairline) solid var(--line); }
+.two-col-numbered .gv-step-title { margin: 0; }
 .two-col-numbered .lead { margin: 0; max-width: var(--measure); color: var(--text-secondary); }
 .two-col-index { font: 400 11px/16px var(--font-mono); letter-spacing: .14em; color: var(--text-secondary); }
 

@@ -1,33 +1,21 @@
-// Inhalte für "Über uns". Hier eintragen, die Seiten übernehmen alles automatisch.
-// Solange ein Feld leer ist, zeigen die Seiten einen sichtbaren Platzhalter.
+// Team-Vorstellung für "Über uns". Bewusst ohne Namen und Fotos: das Team wird über seine
+// Schwerpunkte vorgestellt. Hier ändern, die Seite übernimmt alles automatisch.
 
-export interface Person {
-  name: string;
-  role: string;
-  /** 1–2 Sätze, in "du"-freier Beschreibung (3. Person oder "ich") */
-  text?: string;
-  /** Pfad unter /public, z. B. "/team/vorname.jpg". Nur echte Fotos, keine Stockfotos. */
-  photo?: string;
-  /** Beschreibung des Fotos für Screenreader, z. B. "Porträt von Vorname Nachname" */
-  photoAlt?: string;
+export interface Focus {
+  title: string;
+  text: string;
 }
 
-export const about: {
-  /** 2–3 Sätze: wer ihr seid, seit wann, warum GRAVN. */
-  intro?: string;
-  people: Person[];
-} = {
-  intro: 'GRAVN wurde von Önder Türksoy und Serhat Hiraözlü gegründet. Wir verbinden Erfahrung aus der Unternehmens- und SAP-Beratung mit Kreativität und Technik. Das Ziel: Digitales, das für kleine Unternehmen wirklich funktioniert.',
-  people: [
+export const team: { intro: string; areas: Focus[] } = {
+  intro: 'Hinter GRAVN steht ein kleines Team mit Erfahrung aus der Unternehmens- und SAP-Beratung. Wir verbinden kreative Ideen mit sauberer technischer Umsetzung und bleiben dabei dein direkter Ansprechpartner.',
+  areas: [
     {
-      name: 'Önder Türksoy',
-      role: 'Gründer / Kreation & Vertrieb',
-      text: 'Kreativer Kopf und erster Ansprechpartner für neue Projekte. Bringt langjährige Erfahrung aus der Unternehmensberatung mit.',
+      title: 'Kreation & Vertrieb',
+      text: 'Ideen, Konzepte und der erste Kontakt zu neuen Projekten. Mit langjähriger Erfahrung aus der Unternehmensberatung.',
     },
     {
-      name: 'Serhat Hiraözlü',
-      role: 'Gründer / Technik & Umsetzung',
-      text: 'Verantwortet Technik und Umsetzung. Bringt langjährige Erfahrung aus der SAP-Beratung mit.',
+      title: 'Technik & Umsetzung',
+      text: 'Entwicklung, Automatisierung und eine Umsetzung, die im Alltag funktioniert. Mit langjähriger Erfahrung aus der SAP-Beratung.',
     },
   ],
 };
