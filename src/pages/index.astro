@@ -7,9 +7,9 @@ import { processSteps } from '../data/process';
 import Illustration from '../components/Illustration.astro';
 import StoryLoader from '../components/StoryLoader.astro';
 import ChapterNav from '../components/ChapterNav.astro';
-import imgWebsites from '../assets/illustrations/websites.png';
-import imgMarketing from '../assets/illustrations/marketing.png';
-import imgKi from '../assets/illustrations/ki.png';
+import imgWebsites from '../assets/plates/websites.svg';
+import imgMarketing from '../assets/plates/marketing.svg';
+import imgKi from '../assets/plates/ki.svg';
 
 // Kapitel 2 bis 4 der Scroll-Geschichte. Die id muss zu einem Schlüsselbild in src/scripts/story/timeline.ts passen.
 const disciplines = [
@@ -17,19 +17,19 @@ const disciplines = [
     id: 'websites', index: '01', title: 'Websites & Webdesign', href: '/websites', cta: 'Mehr zu Websites',
     tags: ['Design', 'Entwicklung', 'Optimierung'],
     text: 'Wir gestalten und entwickeln Websites, die dein Angebot verständlich machen, Vertrauen schaffen und den Weg zur Anfrage erleichtern. Durchdacht im Design, intuitiv in der Bedienung und auf jedem Gerät überzeugend.',
-    image: imgWebsites, alt: 'Isometrische Illustration: drei übereinanderliegende Ebenen für Design, Entwicklung und Optimierung einer Website',
+    image: imgWebsites, alt: 'Isometrische Linienzeichnung: eine Ebene mit dem Aufbau einer Website – Kopfzeile, Überschrift, Bildfeld und Karten',
   },
   {
     id: 'marketing', index: '02', title: 'Marketing & Social Media', href: '/marketing', cta: 'Mehr zu Marketing',
     tags: ['Strategie', 'Inhalte', 'Kanäle'],
     text: 'Wir machen sichtbar, was dein Unternehmen auszeichnet. Mit einer klaren Strategie, relevanten Inhalten und gezielten Kampagnen sprechen wir die Menschen an, die zu deinem Angebot passen.',
-    image: imgMarketing, alt: 'Isometrische Illustration: Strategie, Inhalte und Kanäle als Plattform mit Signalen, die Menschen erreichen',
+    image: imgMarketing, alt: 'Isometrische Linienzeichnung: eine Ebene mit einem Kern, Signalringen, Kontaktpunkten und drei Inhaltskarten',
   },
   {
     id: 'ki', index: '03', title: 'KI & Automatisierung', href: '/ki-automatisierung', cta: 'Mehr zu KI',
     tags: ['Workflows', 'Assistenten', 'Beratung'],
     text: 'Wir verbinden deine Systeme, automatisieren wiederkehrende Aufgaben und integrieren digitale Assistenten in deinen Arbeitsalltag. Mit passender Beratung und einer Umsetzung, die dein Team entlastet.',
-    image: imgKi, alt: 'Isometrische Illustration: Fließband mit automatisiertem Ablauf, Assistent und Ablaufdiagramm für KI und Automatisierung',
+    image: imgKi, alt: 'Isometrische Linienzeichnung: eine Ebene mit einem Ablauf aus Aufgaben, einem Tor, erledigten Aufgaben und einem Ablaufplan',
   },
 ];
 

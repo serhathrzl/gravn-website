@@ -116,8 +116,8 @@ main:focus { outline: none; }
 .person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Illustrationen (Bilder Website) */
-.illustration { width: 100%; height: 100%; object-fit: cover; display: block; }
-.illustration-wide { margin-top: var(--space-7); aspect-ratio: 16 / 10; background: var(--surface-raised); overflow: hidden; }
+.illustration { width: 100%; height: 100%; object-fit: contain; display: block; }
+.illustration-wide { margin-top: var(--space-7); aspect-ratio: 16 / 10; overflow: hidden; }
 
 /* Zoom: Antippen vergrößert die Illustration (Lightbox) */
 .zoom-trigger { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; position: relative; }
@@ -155,7 +155,7 @@ main:focus { outline: none; }
 .chapter-text { display: grid; gap: var(--space-5); justify-items: start; }
 .chapter-text .heading-1, .chapter-text .lead, .chapter-text .gv-eyebrow { margin: 0; }
 .chapter-text .lead { color: var(--text-secondary); max-width: var(--measure); }
-.chapter-fallback { aspect-ratio: 4 / 3; background: var(--surface-raised); overflow: hidden; }
+.chapter-fallback { aspect-ratio: 4 / 3; overflow: hidden; }
 @media (max-width: 767px) { .chapter-grid { grid-template-columns: 1fr; gap: var(--space-6); } .chapter-step { padding-block: var(--space-8); } }
 
 
@@ -167,7 +167,7 @@ main:focus { outline: none; }
 .chapter-list .gv-step-text { max-width: none; margin-top: var(--space-1); }
 .chapter-text .note { margin: 0; }
 .chapter-list-text { margin: 0; font: 400 18px/26px var(--font-sans); letter-spacing: -.005em; color: var(--text); }
-.hero-fallback { margin-top: var(--space-7); }
+.hero-fallback { margin-top: var(--space-7); aspect-ratio: 4 / 3; }
 
 /* Kapitelmenü: nur mit Bühne, rechts im Seitenrand */
 .chapter-nav { display: none; }

@@ -1,4 +1,7 @@
 ---
+// Standbild einer Ebene (src/assets/plates/*.svg, erzeugt mit scripts/capture-plates.mjs) oder ein Rasterbild.
+// SVGs werden unverändert eingebunden und bleiben auf jedem Bildschirm scharf;
+// Rasterbilder rechnet Astro in passende WebP-Größen um.
 import { Image, getImage } from 'astro:assets';
 
 interface Props {
@@ -12,13 +15,19 @@ interface Props {
   class?: string;
 }
 const { src, alt, size = 'card', zoom = false, loading = 'lazy', class: className } = Astro.props;
+const vector = src.format === 'svg';
 const sizes = size === 'card' ? '(min-width: 1024px) 460px, (min-width: 768px) 50vw, 100vw' : '(min-width: 1440px) 1280px, 100vw';
-const full = zoom ? await getImage({ src, width: 2400, format: 'webp', quality: 85 }) : undefined;
+const full = zoom ? (vector ? src.src : (await getImage({ src, width: 2400, format: 'webp', quality: 85 })).src) : undefined;
+const imgAlt = zoom ? '' : alt;
 ---
 {zoom ? (
-  <button type="button" class:list={['zoom-trigger', `zoom-${zoom}`]} data-zoom={zoom} data-full={full?.src} data-alt={alt} aria-label={`Bild vergrößern: ${alt}`}>
-    <Image src={src} alt="" widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />
+  <button type="button" class:list={['zoom-trigger', `zoom-${zoom}`]} data-zoom={zoom} data-full={full} data-alt={alt} aria-label={`Bild vergrößern: ${alt}`}>
+    {vector
+      ? <img src={src.src} width={src.width} height={src.height} alt={imgAlt} loading={loading} decoding="async" class:list={['illustration', className]} />
+      : <Image src={src} alt={imgAlt} widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />}
   </button>
+) : vector ? (
+  <img src={src.src} width={src.width} height={src.height} alt={imgAlt} loading={loading} decoding="async" class:list={['illustration', className]} />
 ) : (
-  <Image src={src} alt={alt} widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />
+  <Image src={src} alt={imgAlt} widths={[480, 800, 1200, 1600]} sizes={sizes} format="webp" quality={82} loading={loading} decoding="async" class:list={['illustration', className]} />
 )}

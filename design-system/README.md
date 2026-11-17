@@ -60,19 +60,17 @@ One icon family, drawn for GRAVN: 24px grid, 1.5px stroke, square caps, no fills
 
 Abstract, monochrome, precise: dark studio renders of metallic forms (`steel` on `ink`), line diagrams of workflows, typographic tiles. No stock people, no robots, no glowing brains, no blue-purple "AI" gradients.
 
-**Service illustrations (website).** Each discipline has one isometric line illustration in 4:3: `src/assets/illustrations/websites.png`, `marketing.png`, `ki.png` (greyscale, derived from the originals in `Bilder Website/`). They are the approved imagery for `ServiceCard` and the service pages.
-- Greyscale only. The brass of the originals is removed so the 90 / 9 / 1 colour ratio holds; brass stays a typographic highlight.
-- The soft ground shadows inside the illustrations are part of the artwork. The "no shadows, no gradients" rule still applies to the UI itself (cards, buttons, frames).
-- The corner and callout labels are baked into the image (not selectable, not translatable). Every image needs a descriptive `alt` text. The meta label in the third image reads "KI / AUTOMATISIERUNG" (not "AI"), in line with the voice rules.
-- The working images are generated from the originals by `node scripts/make-illustrations.mjs` (greyscale, KI label). Change the originals or the script, never edit the generated PNGs by hand.
-- Use the `Illustration` component (WebP, responsive sizes); never link the 3200 px originals.
-- Zoom: tapping an illustration opens it full screen (`Illustration zoom="mobile"` on cards up to 1023 px wide, `zoom="always"` on service pages). The full-screen view is wider than the phone and can be panned and pinch-zoomed; close with the close button or Esc. On desktop, card images keep their normal behaviour (the whole card links to the service page).
-- `ServiceCard` uses the raised (light) frame for all three cards; `visualTone="inverse"` is not used with these images.
+**3D planes (website).** The one image language of the site: three isometric planes (Websites, Marketing, KI) drawn in ink lines on white faces, standing directly on `paper`. No frames, no shadows, no baked-in text, no brass inside the object.
+- Live on screens from 1024 px with motion allowed: `src/scripts/story/` (three.js), loaded on demand by `StoryLoader`. The home page shows all three planes, each service page only its own plane.
+- Everywhere else (phones, reduced motion, no WebGL): still images of the same planes, `src/assets/plates/*.svg`, generated from the 3D geometry with `node scripts/capture-plates.mjs` (then open http://localhost:4500). Never edit the SVGs by hand; change `scene.ts` and regenerate.
+- Use the `Illustration` component (SVG is embedded as is, sharp at every size). Tapping a still opens it full screen (`zoom="mobile"` on home cards, `zoom="always"` in service page heads).
+- Every still needs a descriptive `alt` text.
 
 ## Motion and states
 
 - Hover is quiet: 180ms `cubic-bezier(.2,0,0,1)`. Arrows shift 2px up-right and turn `accent`; link underlines draw in; primary fills lighten slightly. Nothing bounces, nothing scales.
 - Respect `prefers-reduced-motion` (durations drop to 0).
+- Scroll stage (home and service pages only): the planes follow the reader in slow, eased camera moves, one key frame per chapter (`timeline.ts`). Nothing bounces or flashes; at the end the planes fold into a faint watermark before the dark closing section. Without the stage the pages must stay complete and readable.
 - Focus: 2px solid `focus` ring, 3px offset, on every interactive element — never removed.
 - Controls are at least `control-height` (48px) tall.
 
