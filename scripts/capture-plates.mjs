@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 const OUT = 'src/assets/plates';
-const NAMES = new Set(['websites', 'marketing', 'ki']);
+const NAMES = new Set(['websites', 'marketing', 'ki', 'team']);
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gravn-capture-'));
 
 await build({

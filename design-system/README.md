@@ -61,7 +61,7 @@ One icon family, drawn for GRAVN: 24px grid, 1.5px stroke, square caps, no fills
 Abstract, monochrome, precise: dark studio renders of metallic forms (`steel` on `ink`), line diagrams of workflows, typographic tiles. No stock people, no robots, no glowing brains, no blue-purple "AI" gradients.
 
 **3D planes (website).** The one image language of the site: three isometric planes (Websites, Marketing, KI) drawn in ink lines on white faces, standing directly on `paper`. No frames, no shadows, no baked-in text, no brass inside the object.
-- Live on screens from 1024 px with motion allowed: `src/scripts/story/` (three.js), loaded on demand by `StoryLoader`. The home page shows all three planes, each service page only its own plane.
+- Live on screens from 1024 px with motion allowed: `src/scripts/story/` (three.js), loaded on demand by `StoryLoader`. The home page shows all three planes, each service page only its own plane. The about page shows its own scene (`createTeam`): three slim, faceless figures around the stack of the three planes, connected by fine lines; the only ink fill is the bar on the top plane, never a person.
 - Everywhere else (phones, reduced motion, no WebGL): still images of the same planes, `src/assets/plates/*.svg`, generated from the 3D geometry with `node scripts/capture-plates.mjs` (then open http://localhost:4500). Never edit the SVGs by hand; change `scene.ts` and regenerate.
 - Use the `Illustration` component (SVG is embedded as is, sharp at every size). Tapping a still opens it full screen (`zoom="mobile"` on home cards, `zoom="always"` in service page heads).
 - Every still needs a descriptive `alt` text.

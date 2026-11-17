@@ -2,7 +2,7 @@
 // bleibt die statische Ansicht mit den Standbildern sichtbar.
 // Welche Zeitachse gilt, steht in data-story am Element .story (home, websites, marketing, ki).
 import * as THREE from 'three';
-import { createPlates, setOpacity } from './scene';
+import { createPlates, createTeam, setOpacity } from './scene';
 import { timelines, mix, sample, type Frame, type StoryPage } from './timeline';
 
 const VIEW = 7.5; // sichtbare Höhe der Szene bei zoom = 1
@@ -39,11 +39,13 @@ function boot() {
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
   const object = new THREE.Group();
-  const plates = createPlates({
+  const palette = {
     ink: cssVar('--ink', '#0b0a09'),
     raised: cssVar('--white', '#ffffff'),
     soft: cssVar('--line-strong', '#8a8a8a'),
-  });
+  };
+  // Über uns zeigt die Team-Szene als einzige Gruppe, alle anderen Seiten die drei Ebenen.
+  const plates = story.dataset.story === 'about' ? [createTeam(palette)] : createPlates(palette);
   for (const p of plates) object.add(p.group);
   scene.add(object);
 

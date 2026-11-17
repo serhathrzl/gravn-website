@@ -2,19 +2,19 @@
 // und schickt es an den lokalen Server aus scripts/capture-plates.mjs, der es in src/assets/plates/ speichert.
 // Die Standbilder sind die Ersatzansicht ohne 3D (Handy, reduzierte Bewegung) und sehen aus wie die Bühne.
 import * as THREE from 'three';
-import { createPlates } from './scene';
+import { createPlates, createTeam, type Plate } from './scene';
 
 // Farben wie in design-system/tokens.css: --ink, --white, --line-strong
 const PALETTE = { ink: '#0b0a09', raised: '#ffffff', soft: '#8a8a8a' };
 const DIR = new THREE.Vector3(1, 0.82, 1).normalize(); // gleicher Blickwinkel wie main.ts
-const NAMES = ['websites', 'marketing', 'ki'] as const;
+const NAMES = ['websites', 'marketing', 'ki', 'team'] as const;
 const WIDTH = 1200;
 const HEIGHT = 900; // 4:3 wie die bisherigen Illustrationen
 const LINE = 1.25; // Strichstärke im SVG
 const MARGIN = 1.04;
 
 function render(index: number): string {
-  const plate = createPlates(PALETTE)[index];
+  const plate: Plate = index < 3 ? createPlates(PALETTE)[index] : createTeam(PALETTE);
   const object = new THREE.Group();
   object.add(plate.group);
   object.rotation.y = -0.3; // wie das Schlüsselbild "hero" der Leistungsseiten
@@ -71,13 +71,14 @@ function toSvg(object: THREE.Object3D, camera: THREE.Camera): string {
   const lines: THREE.Line[] = [];
   object.traverse((o) => {
     if (o instanceof THREE.Mesh && o.geometry instanceof THREE.BoxGeometry) {
-      boxes.push({ mesh: o, depth: o.getWorldPosition(new THREE.Vector3()).dot(DIR) });
+      // Sehr flache Körper (Blätter, Schriftbalken, kleine Ebenen) liegen auf etwas auf: immer zuletzt zeichnen.
+      const flat = o.geometry.parameters.height < 0.03 ? 100 : 0;
+      boxes.push({ mesh: o, depth: o.getWorldPosition(new THREE.Vector3()).dot(DIR) + flat });
     } else if (o instanceof THREE.Line && !(o instanceof THREE.LineSegments)) {
       lines.push(o); // Kantenlinien (LineSegments) zeichnen wir selbst als Umriss der Seiten
     }
   });
   const [base, ...rest] = boxes; // die erste Box ist immer die Grundplatte (siehe Builder in scene.ts)
-  rest.sort((a, b) => a.depth - b.depth);
 
   const out: string[] = [];
   const drawBox = (mesh: THREE.Mesh) => {
@@ -102,15 +103,29 @@ function toSvg(object: THREE.Object3D, camera: THREE.Camera): string {
   };
 
   drawBox(base.mesh);
-  for (const l of lines) {
+  const drawLine = (l: THREE.Line) => {
     const pos = l.geometry.getAttribute('position');
     const pts: string[] = [];
     for (let i = 0; i < pos.count; i++) pts.push(screen(new THREE.Vector3().fromBufferAttribute(pos, i).applyMatrix4(l.matrixWorld), camera));
     const soft = (l.material as THREE.LineBasicMaterial).color.getHexString() === PALETTE.soft.slice(1);
     const tag = l instanceof THREE.LineLoop ? 'polygon' : 'polyline';
     out.push(`<${tag} points="${pts.join(' ')}" fill="none" stroke="${soft ? PALETTE.soft : ink}" stroke-width="${soft ? 1 : LINE}" stroke-linejoin="round"/>`);
+  };
+  // Linien auf der Grundplatte vor allen Körpern. Linien auf schwebenden Ebenen werden mit den Körpern
+  // nach Tiefe sortiert, damit sie auf ihrer Ebene liegen und von höheren Ebenen verdeckt werden.
+  const lifted = (l: THREE.Line) => new THREE.Box3().setFromObject(l).min.y > 0.1;
+  for (const l of lines) if (!lifted(l)) drawLine(l);
+  const items: { depth: number; draw: () => void }[] = rest.map((b) => ({ depth: b.depth, draw: () => drawBox(b.mesh) }));
+  for (const l of lines) {
+    if (!lifted(l)) continue;
+    // Die Linie direkt nach der Ebene zeichnen, auf deren Oberseite sie liegt.
+    const y = new THREE.Box3().setFromObject(l).min.y;
+    const under = rest.find((b) => Math.abs(new THREE.Box3().setFromObject(b.mesh).max.y - y) < 0.01);
+    const c = new THREE.Box3().setFromObject(l).getCenter(new THREE.Vector3());
+    items.push({ depth: under ? under.depth + 0.001 : c.dot(DIR), draw: () => drawLine(l) });
   }
-  for (const b of rest) drawBox(b.mesh);
+  items.sort((a, b) => a.depth - b.depth);
+  for (const it of items) it.draw();
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}">${out.join('')}</svg>`;
 }

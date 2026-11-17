@@ -6,6 +6,8 @@ import Button from '../components/Button.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ChapterNav from '../components/ChapterNav.astro';
 import StoryLoader from '../components/StoryLoader.astro';
+import Illustration from '../components/Illustration.astro';
+import imgTeam from '../assets/plates/team.svg';
 import { team } from '../data/about';
 
 const nr = (i: number) => String(i + 1).padStart(2, '0');
@@ -35,6 +37,7 @@ const chapters = [
           <p class="lead">GRAVN verbindet Unternehmensberatung, Design und Technologie. Wir bringen Erfahrung aus Unternehmens- und SAP-Beratung, Webdesign, KI, Marketing und Social Media zusammen.</p>
           <p class="lead">Gemeinsam unterstützen wir Unternehmen dabei, ihren digitalen Auftritt zu stärken, passende Kunden zu erreichen und Arbeitsabläufe zu verbessern.</p>
         </div>
+        <div class="illustration-wide hero-fallback"><Illustration src={imgTeam} alt="Isometrische Linienzeichnung: drei Figuren stehen um einen Stapel aus drei Ebenen, feine Linien verbinden jede Figur mit dem Stapel" size="wide" zoom="always" loading="eager" /></div>
       </div>
     </section>
 

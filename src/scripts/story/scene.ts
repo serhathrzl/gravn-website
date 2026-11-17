@@ -21,12 +21,12 @@ class Builder {
   fill: THREE.MeshBasicMaterial;
   solid: THREE.MeshBasicMaterial;
 
-  constructor(p: Palette) {
+  constructor(p: Palette, width = W, depth = D) {
     this.line = new THREE.LineBasicMaterial({ color: p.ink, transparent: true });
     this.soft = new THREE.LineBasicMaterial({ color: p.soft, transparent: true });
     this.fill = new THREE.MeshBasicMaterial({ color: p.raised, transparent: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
     this.solid = new THREE.MeshBasicMaterial({ color: p.ink, transparent: true });
-    this.box(0, 0, W, D, H, -H / 2);
+    this.box(0, 0, width, depth, H, -H / 2);
   }
 
   /** Körper mit Kantenlinien; x/z sind die Mitte, y0 die Unterkante. */
@@ -43,25 +43,25 @@ class Builder {
   }
 
   /** Linienzug auf der Oberfläche; Punkte als [x, z]. */
-  path(points: [number, number][], closed = false, soft = false) {
-    const pts = points.map(([x, z]) => new THREE.Vector3(x, TOP, z));
+  path(points: [number, number][], closed = false, soft = false, y = TOP) {
+    const pts = points.map(([x, z]) => new THREE.Vector3(x, y, z));
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
     const mat = soft ? this.soft : this.line;
     this.group.add(closed ? new THREE.LineLoop(geo, mat) : new THREE.Line(geo, mat));
   }
 
   /** Rechteck auf der Oberfläche; x/z ist die linke obere Ecke. */
-  rect(x: number, z: number, w: number, d: number, soft = false) {
-    this.path([[x, z], [x + w, z], [x + w, z + d], [x, z + d]], true, soft);
+  rect(x: number, z: number, w: number, d: number, soft = false, y = TOP) {
+    this.path([[x, z], [x + w, z], [x + w, z + d], [x, z + d]], true, soft, y);
   }
 
-  ring(x: number, z: number, r: number, soft = false) {
+  ring(x: number, z: number, r: number, soft = false, y = TOP) {
     const pts: [number, number][] = [];
     for (let i = 0; i < 72; i++) {
       const a = (i / 72) * Math.PI * 2;
       pts.push([x + Math.cos(a) * r, z + Math.sin(a) * r]);
     }
-    this.path(pts, true, soft);
+    this.path(pts, true, soft, y);
   }
 
   done(): Plate {
@@ -118,6 +118,44 @@ function kiPlate(p: Palette): Plate {
   b.path([[-0.75, 0.62], [-0.75, 1.02], [-0.5, 1.02]]);
   b.path([[0, 0.47], [0.25, 0.47], [0.25, 0.72], [0.5, 0.72]]);
   b.path([[0, 1.02], [0.25, 1.02], [0.25, 0.72]]);
+  return b.done();
+}
+
+/** Schlanke Figur wie im Architekturmodell: zwei Beine, Körper, kleiner abgesetzter Kopf. x/z = Standpunkt. */
+function figure(b: Builder, x: number, z: number) {
+  b.ring(x, z, 0.2, true);
+  b.box(x - 0.042, z, 0.06, 0.07, 0.42);
+  b.box(x + 0.042, z, 0.06, 0.07, 0.42);
+  b.box(x, z, 0.2, 0.11, 0.36, H / 2 + 0.43);
+  b.box(x, z, 0.1, 0.1, 0.1, H / 2 + 0.83);
+}
+
+/** Über uns: ein Team, das gemeinsam an deinem digitalen Auftritt baut.
+ *  In der Mitte der Stapel der drei Ebenen (Websites, Marketing, KI), drumherum drei schlanke Figuren,
+ *  feine Linien von jeder Figur zum Stapel. Einziger schwarzer Akzent: der Balken auf der obersten Ebene. */
+export function createTeam(p: Palette): Plate {
+  const b = new Builder(p, 3.0, 2.2);
+  const cx = 0.2;
+  const cz = 0.15;
+  const levels = [0.2, 0.5, 0.8];
+  for (const y of levels) b.box(cx, cz, 1.0, 0.72, 0.03, H / 2 + y);
+  const top = (i: number) => H / 2 + levels[i] + 0.03 + 0.004;
+  // unten: Ablauf-Kästchen (KI), Mitte: Signalring (Marketing), oben: Seite mit Überschrift (Websites)
+  b.rect(cx - 0.38, cz - 0.2, 0.2, 0.14, true, top(0));
+  b.rect(cx - 0.06, cz - 0.2, 0.2, 0.14, true, top(0));
+  b.rect(cx + 0.14, cz + 0.06, 0.2, 0.14, true, top(0));
+  b.ring(cx, cz, 0.22, true, top(1));
+  b.ring(cx, cz, 0.08, false, top(1));
+  b.rect(cx - 0.4, cz - 0.27, 0.8, 0.54, false, top(2));
+  b.box(cx - 0.08, cz - 0.12, 0.44, 0.07, 0.006, top(2) - 0.004, true);
+  b.path([[cx - 0.3, cz + 0.05], [cx + 0.1, cz + 0.05]], false, true, top(2));
+  b.path([[cx - 0.3, cz + 0.13], [cx - 0.05, cz + 0.13]], false, true, top(2));
+  // Drei Figuren links, hinten und rechts vom Stapel, je mit Linie zum Stapel
+  const people: [number, number][] = [[-0.95, -0.35], [1.05, -0.65], [-0.55, 0.8]];
+  for (const [x, z] of people) {
+    figure(b, x, z);
+    b.path([[x, z], [cx, cz]], false, true);
+  }
   return b.done();
 }
 

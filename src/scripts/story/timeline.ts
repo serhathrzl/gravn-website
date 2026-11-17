@@ -41,12 +41,13 @@ const home: Record<string, Frame> = {
   ueber: f({ gap: 0.55, zoom: 0.62, cx: 0.72, rot: 1.5, op: [MARK, MARK, MARK], link: MARK }),
 };
 
-/** Über uns: alle drei Ebenen, sie fächern auf, fügen sich zusammen und bleiben als Wasserzeichen. */
+/** Über uns: die Team-Szene (createTeam). Nur op[0] zählt; Kamera fährt vom Ganzen zu den Ebenen,
+ *  dann zu den Figuren und endet als Wasserzeichen. */
 const about: Record<string, Frame> = {
-  hero: f({ gap: 1.05, zoom: 0.82, cx: 0.79, cy: 0.6, rot: -0.35, op: [1, 1, 1] }),
-  blick: f({ gap: 1.7, zoom: 0.8, cx: 0.72, rot: 0.1, op: [1, 1, 1] }),
-  zusammenarbeit: f({ gap: 1.0, zoom: 0.9, cx: 0.74, rot: 1.0, op: [1, 1, 1], link: 1 }),
-  team: f({ gap: 0.55, zoom: 0.62, cx: 0.5, cy: 0.52, rot: 1.35, op: [MARK, MARK, MARK], link: MARK }),
+  hero: f({ zoom: 1.4, cx: 0.75, cy: 0.56, rot: -0.3, ty: 0.3, op: [1, 0, 0] }),
+  blick: f({ zoom: 1.9, cx: 0.72, rot: 0.05, tx: 0.2, ty: 0.55, tz: 0.15, op: [1, 0, 0] }),
+  zusammenarbeit: f({ zoom: 1.55, cx: 0.73, rot: 0.75, ty: 0.35, op: [1, 0, 0] }),
+  team: f({ zoom: 0.85, cx: 0.5, cy: 0.52, rot: 1.25, ty: 0.3, op: [MARK, 0, 0] }),
 };
 
 /** Leistungsseiten: nur die eigene Ebene, die Kamera fährt je Kapitel an andere Stellen. */
