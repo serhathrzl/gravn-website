@@ -18,14 +18,17 @@ import { about } from '../data/about';
     </div>
   </section>
 
+  <!-- Aufbau aller Abschnitte: Überschrift über die volle Breite, darunter gleich breite Spalten. -->
   <section class="section" data-theme="dark" aria-labelledby="kompetenzen">
     <div class="container">
-      <SectionHeading index="01" eyebrow="Unser Blick">
+      <SectionHeading index="01" eyebrow="Unser Blick" align="stacked">
         <Fragment slot="title"><span id="kompetenzen">Unterschiedliche Kompetenzen.<br />Ein gemeinsamer Blick auf dein Unternehmen.</span></Fragment>
-        <Fragment slot="intro">Eine Website muss dein Angebot verständlich machen. Marketing muss die richtigen Menschen erreichen. Und neue Technologien müssen sich im Arbeitsalltag bewähren.</Fragment>
       </SectionHeading>
-      <p class="about-text">Deshalb betrachten wir diese Aufgaben im Zusammenhang. Wir beschäftigen uns mit deinem Geschäftsmodell, deiner Zielgruppe und deinen Abläufen. Daraus entwickeln wir Lösungen, die zusammenpassen – vom ersten Konzept bis zur technischen Umsetzung.</p>
-      <ol class="grid-3" style="padding:0;list-style:none">
+      <div class="two-col">
+        <p class="lead">Eine Website muss dein Angebot verständlich machen. Marketing muss die richtigen Menschen erreichen. Und neue Technologien müssen sich im Arbeitsalltag bewähren.</p>
+        <p class="lead">Deshalb betrachten wir diese Aufgaben im Zusammenhang. Wir beschäftigen uns mit deinem Geschäftsmodell, deiner Zielgruppe und deinen Abläufen. Daraus entwickeln wir Lösungen, die zusammenpassen – vom ersten Konzept bis zur technischen Umsetzung.</p>
+      </div>
+      <ol class="grid-3 grid-steps">
         <ProcessStep number="01" title="Unternehmen & Prozesse" text="Unsere Erfahrung aus Unternehmens- und SAP-Beratung hilft uns, Geschäftsabläufe zu verstehen, Anforderungen zu strukturieren und sinnvolle Prioritäten zu setzen." />
         <ProcessStep number="02" title="Design & Kommunikation" text="Wir übersetzen dein Angebot in einen klaren digitalen Auftritt. Mit Websites, Inhalten und Social Media machen wir verständlich, was dein Unternehmen auszeichnet." />
         <ProcessStep number="03" title="KI & Automatisierung" text="Wir identifizieren geeignete Einsatzmöglichkeiten, wählen passende Werkzeuge aus und integrieren sie in bestehende Abläufe. Dazu gehört auch, dein Team mit den neuen Lösungen vertraut zu machen." />
@@ -35,24 +38,24 @@ import { about } from '../data/about';
 
   <section class="section" aria-labelledby="zusammenarbeit">
     <div class="container">
-      <SectionHeading index="02" eyebrow="Zusammenarbeit">
+      <SectionHeading index="02" eyebrow="Zusammenarbeit" align="stacked">
         <Fragment slot="title"><span id="zusammenarbeit">So arbeiten wir mit dir.</span></Fragment>
       </SectionHeading>
-      <div class="two-col">
-        <p class="lead">Am Anfang stehen dein Vorhaben und die Frage, was sich konkret verbessern soll. Gemeinsam legen wir Ziele, Umfang und Prioritäten fest.</p>
-        <p class="lead">Während der Umsetzung hast du einen festen Ansprechpartner, erhältst Einblick in die Fortschritte und kannst Entscheidungen nachvollziehen. Zum Abschluss sorgen wir für eine verständliche Übergabe und besprechen, welche Betreuung anschließend sinnvoll ist.</p>
-      </div>
+      <ol class="two-col two-col-numbered">
+        <li><span class="two-col-index">01</span><p class="lead">Am Anfang stehen dein Vorhaben und die Frage, was sich konkret verbessern soll. Gemeinsam legen wir Ziele, Umfang und Prioritäten fest.</p></li>
+        <li><span class="two-col-index">02</span><p class="lead">Während der Umsetzung hast du einen festen Ansprechpartner, erhältst Einblick in die Fortschritte und kannst Entscheidungen nachvollziehen. Zum Abschluss sorgen wir für eine verständliche Übergabe und besprechen, welche Betreuung anschließend sinnvoll ist.</p></li>
+      </ol>
     </div>
   </section>
 
   <section class="section" style="padding-top:0" aria-labelledby="team">
     <div class="container">
-      <SectionHeading index="03" eyebrow="Menschen">
+      <SectionHeading index="03" eyebrow="Menschen" align="stacked">
         <Fragment slot="title"><span id="team">Das Team.<br />Mit Gesicht.</span></Fragment>
-        {about.intro && <Fragment slot="intro">{about.intro}</Fragment>}
       </SectionHeading>
+      {about.intro && <p class="lead team-intro">{about.intro}</p>}
       {about.people.length
-        ? <div class="grid-3">{about.people.map((p) => <PersonCard {...p} />)}</div>
+        ? <div class="people">{about.people.map((p) => <PersonCard {...p} />)}</div>
         : <p class="about-text"><span class="placeholder">Platzhalter: Namen, Rollen, optional Foto (keine Stockfotos)</span></p>}
     </div>
   </section>

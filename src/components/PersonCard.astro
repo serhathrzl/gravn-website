@@ -1,10 +1,17 @@
 ---
+// Person auf der Über-uns-Seite: Hochformat-Foto links, Text rechts (Handy: untereinander).
+// Ohne Foto steht ein ruhiger Platzhalter mit dem G-Zeichen. Fotos werden schwarzweiß gezeigt (siehe global.css).
+import Logo from './Logo.astro';
 import type { Person } from '../data/about';
 const { name, role, text, photo, photoAlt } = Astro.props as Person;
 ---
 <article class="person">
-  {photo && <div class="person-photo"><img src={photo} alt={photoAlt ?? `Porträt von ${name}`} loading="lazy" width="480" height="600" /></div>}
-  <p class="gv-service-index">{role}</p>
-  <h3 class="gv-service-title" style="display:block">{name}</h3>
-  {text && <p class="gv-service-text">{text}</p>}
+  {photo
+    ? <div class="person-photo"><img src={photo} alt={photoAlt ?? `Porträt von ${name}`} loading="lazy" width="480" height="600" /></div>
+    : <div class="person-photo is-placeholder" role="img" aria-label={`Platzhalter für das Foto von ${name}`}><Logo variant="mark" size={28} /><span>Foto folgt</span></div>}
+  <div class="person-body">
+    <p class="gv-service-index">{role}</p>
+    <h3 class="gv-service-title" style="display:block">{name}</h3>
+    {text && <p class="gv-service-text">{text}</p>}
+  </div>
 </article>
