@@ -1,16 +1,20 @@
 ---
 // Lädt die 3D-Bühne (public/story.js) nur, wenn sie gebraucht wird: großer Bildschirm und Bewegung nicht reduziert.
 // Handys und Nutzer mit reduzierter Bewegung laden die Datei gar nicht erst.
+// Der Pfad steht absolut im Attribut data-story-src (gilt auch für Seiten in Unterordnern wie /marketing/);
+// scripts/make-preview.mjs rechnet ihn für die Doppelklick-Vorschau in einen relativen Pfad um.
 ---
+<span id="story-src" data-story-src="/story.js" hidden></span>
 <script>
   const wide = window.matchMedia('(min-width: 1024px)');
   const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const src = document.getElementById('story-src')?.getAttribute('data-story-src') ?? '/story.js';
   let requested = false;
   function load() {
     if (requested || !wide.matches || calm.matches) return;
     requested = true;
     const s = document.createElement('script');
-    s.src = new URL('story.js', document.baseURI).href;
+    s.src = src;
     document.head.appendChild(s);
   }
   load();
