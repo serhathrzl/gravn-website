@@ -1,11 +1,13 @@
-// Startet die 3D-Bühne der Startseite. Ohne dieses Skript (oder wenn es abbricht)
-// bleibt die statische Ansicht mit den Illustrationen sichtbar.
+// Startet die 3D-Bühne (Startseite und Leistungsseiten). Ohne dieses Skript (oder wenn es abbricht)
+// bleibt die statische Ansicht mit den Standbildern sichtbar.
+// Welche Zeitachse gilt, steht in data-story am Element .story (home, websites, marketing, ki).
 import * as THREE from 'three';
 import { createPlates, setOpacity } from './scene';
-import { frames, mix, sample, type Frame } from './timeline';
+import { timelines, mix, sample, type Frame, type StoryPage } from './timeline';
 
 const VIEW = 7.5; // sichtbare Höhe der Szene bei zoom = 1
 const DIR = new THREE.Vector3(1, 0.82, 1).normalize(); // Blickwinkel wie in den Illustrationen
+const UP = new THREE.Vector3(0, 1, 0);
 
 function cssVar(name: string, fallback: string) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
@@ -19,6 +21,8 @@ function boot() {
   const wide = window.matchMedia('(min-width: 1024px)'); // Bühne nur auf großen Bildschirmen, sonst statische Ansicht
   if (!wide.matches) return;
 
+  const frames = timelines[(story.dataset.story ?? 'home') as StoryPage];
+  if (!frames) return;
   const chapters = Array.from(story.querySelectorAll<HTMLElement>('[data-chapter]'));
   const order = chapters.map((c) => frames[c.dataset.chapter ?? '']).filter(Boolean) as Frame[];
   if (order.length < 2 || order.length !== chapters.length) return;
@@ -95,8 +99,10 @@ function boot() {
     camera.right = w * (1 - f.cx);
     camera.top = h * f.cy;
     camera.bottom = -h * (1 - f.cy);
-    camera.position.set(DIR.x * 30, f.ty + DIR.y * 30, DIR.z * 30);
-    camera.lookAt(0, f.ty, 0);
+    // Der Blickpunkt liegt auf der gedrehten Ebene; deshalb mit der Objektdrehung mitführen.
+    const target = new THREE.Vector3(f.tx, f.ty, f.tz).applyAxisAngle(UP, object.rotation.y);
+    camera.position.set(target.x + DIR.x * 30, target.y + DIR.y * 30, target.z + DIR.z * 30);
+    camera.lookAt(target);
     camera.updateProjectionMatrix();
   }
 

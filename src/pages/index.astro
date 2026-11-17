@@ -5,6 +5,8 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ProcessStep from '../components/ProcessStep.astro';
 import { processSteps } from '../data/process';
 import Illustration from '../components/Illustration.astro';
+import StoryLoader from '../components/StoryLoader.astro';
+import ChapterNav from '../components/ChapterNav.astro';
 import imgWebsites from '../assets/illustrations/websites.png';
 import imgMarketing from '../assets/illustrations/marketing.png';
 import imgKi from '../assets/illustrations/ki.png';
@@ -53,7 +55,7 @@ const chapterNav = [
   title="GRAVN Digital – Websites, Marketing und KI für wachsende Marken"
   description="Wir bauen Websites, machen Marken sichtbar und nehmen dir Routine ab. Drei Disziplinen, ein Ansprechpartner."
 >
-  <div class="story">
+  <div class="story" data-story="home">
     <div class="story-stage" aria-hidden="true"><canvas id="story-canvas"></canvas></div>
 
     <section class="hero chapter chapter-intro" data-chapter="intro" id="start">
@@ -141,9 +143,7 @@ const chapterNav = [
       </div>
     </section>
 
-    <nav class="chapter-nav" aria-label="Kapitel der Startseite">
-      {chapterNav.map((c) => <a href={`#${c.id}`}><span class="chapter-nav-label">{c.label}</span><span class="chapter-nav-dot" aria-hidden="true"></span></a>)}
-    </nav>
+    <ChapterNav items={chapterNav} label="Kapitel der Startseite" />
   </div>
 
   <section class="section" data-theme="dark" aria-labelledby="cta-title">
@@ -154,20 +154,5 @@ const chapterNav = [
       <Button href="/kontakt">Projekt besprechen</Button>
     </div>
   </section>
-  <script>
-    // Lädt die 3D-Bühne nur, wenn sie gebraucht wird: großer Bildschirm und Bewegung nicht reduziert.
-    // Handys und Nutzer mit reduzierter Bewegung laden die Datei gar nicht erst.
-    const wide = window.matchMedia('(min-width: 1024px)');
-    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let requested = false;
-    function load() {
-      if (requested || !wide.matches || calm.matches) return;
-      requested = true;
-      const s = document.createElement('script');
-      s.src = new URL('story.js', document.baseURI).href;
-      document.head.appendChild(s);
-    }
-    load();
-    wide.addEventListener('change', load);
-  </script>
+  <StoryLoader />
 </Base>

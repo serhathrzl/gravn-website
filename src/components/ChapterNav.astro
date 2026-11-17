@@ -1,0 +1,9 @@
+---
+// Kapitelmenü am rechten Rand (nur mit 3D-Bühne sichtbar). story.js markiert das aktive Kapitel.
+// Reihenfolge muss zu den Abschnitten mit data-chapter passen.
+interface Props { items: { id: string; label: string }[]; label?: string }
+const { items, label = 'Kapitel dieser Seite' } = Astro.props;
+---
+<nav class="chapter-nav" aria-label={label}>
+  {items.map((c) => <a href={`#${c.id}`}><span class="chapter-nav-label">{c.label}</span><span class="chapter-nav-dot" aria-hidden="true"></span></a>)}
+</nav>

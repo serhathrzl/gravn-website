@@ -1,5 +1,6 @@
-// Zeitachse der Scroll-Geschichte: ein Schlüsselbild pro Kapitel, dazwischen wird weich überblendet.
-// Die Reihenfolge muss zu den Abschnitten mit data-chapter in src/pages/index.astro passen.
+// Zeitachsen der Scroll-Geschichten: ein Schlüsselbild pro Kapitel, dazwischen wird weich überblendet.
+// Die Kapitelnamen müssen zu den Abschnitten mit data-chapter passen:
+// Startseite in src/pages/index.astro, Leistungsseiten in src/layouts/ServicePage.astro.
 
 export interface Frame {
   /** Abstand zwischen den Ebenen */
@@ -11,28 +12,55 @@ export interface Frame {
   cy: number;
   /** Drehung um die Hochachse (Bogenmaß) */
   rot: number;
-  /** Höhe, auf die die Kamera blickt */
+  /** Punkt, auf den die Kamera blickt (Höhe ty, auf der Ebene tx/tz) */
   ty: number;
+  tx: number;
+  tz: number;
   /** Deckkraft der Ebenen: Websites, Marketing, KI */
   op: [number, number, number];
   /** Deckkraft der Verbindungslinien zwischen den Ebenen */
   link: number;
 }
 
+export type StoryPage = 'home' | 'websites' | 'marketing' | 'ki';
+
 const FOCUS_GAP = 2.6;
 const DIM = 0.14;
-
 const MARK = 0.09; // Wasserzeichen
 
-export const frames: Record<string, Frame> = {
-  intro: { gap: 1.05, zoom: 0.82, cx: 0.79, cy: 0.6, rot: -0.35, ty: 0, op: [1, 1, 1], link: 0 },
-  disziplinen: { gap: 1.7, zoom: 0.8, cx: 0.72, cy: 0.5, rot: 0, ty: 0, op: [1, 1, 1], link: 0 },
-  websites: { gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, cy: 0.5, rot: 0.2, ty: FOCUS_GAP, op: [1, DIM, DIM], link: 0 },
-  marketing: { gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, cy: 0.5, rot: 0.45, ty: 0, op: [DIM, 1, DIM], link: 0 },
-  ki: { gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, cy: 0.5, rot: 0.7, ty: -FOCUS_GAP, op: [DIM, DIM, 1], link: 0 },
-  zusammenspiel: { gap: 1.0, zoom: 0.9, cx: 0.74, cy: 0.5, rot: 1.0, ty: 0, op: [1, 1, 1], link: 1 },
-  ablauf: { gap: 0.55, zoom: 0.62, cx: 0.5, cy: 0.52, rot: 1.25, ty: 0, op: [MARK, MARK, MARK], link: MARK },
-  ueber: { gap: 0.55, zoom: 0.62, cx: 0.72, cy: 0.5, rot: 1.5, ty: 0, op: [MARK, MARK, MARK], link: MARK },
+const f = (v: Partial<Frame> & Pick<Frame, 'zoom' | 'cx' | 'rot' | 'op'>): Frame => ({ gap: 0, cy: 0.5, ty: 0, tx: 0, tz: 0, link: 0, ...v });
+
+const home: Record<string, Frame> = {
+  intro: f({ gap: 1.05, zoom: 0.82, cx: 0.79, cy: 0.6, rot: -0.35, op: [1, 1, 1] }),
+  disziplinen: f({ gap: 1.7, zoom: 0.8, cx: 0.72, rot: 0, op: [1, 1, 1] }),
+  websites: f({ gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, rot: 0.2, ty: FOCUS_GAP, op: [1, DIM, DIM] }),
+  marketing: f({ gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, rot: 0.45, op: [DIM, 1, DIM] }),
+  ki: f({ gap: FOCUS_GAP, zoom: 1.15, cx: 0.71, rot: 0.7, ty: -FOCUS_GAP, op: [DIM, DIM, 1] }),
+  zusammenspiel: f({ gap: 1.0, zoom: 0.9, cx: 0.74, rot: 1.0, op: [1, 1, 1], link: 1 }),
+  ablauf: f({ gap: 0.55, zoom: 0.62, cx: 0.5, cy: 0.52, rot: 1.25, op: [MARK, MARK, MARK], link: MARK }),
+  ueber: f({ gap: 0.55, zoom: 0.62, cx: 0.72, rot: 1.5, op: [MARK, MARK, MARK], link: MARK }),
+};
+
+/** Leistungsseiten: nur die eigene Ebene, die Kamera fährt je Kapitel an andere Stellen. */
+function service(index: 0 | 1 | 2): Record<string, Frame> {
+  const on = [0, 0, 0] as Frame['op'];
+  on[index] = 1;
+  const mark = [0, 0, 0] as Frame['op'];
+  mark[index] = MARK;
+  return {
+    hero: f({ zoom: 1.0, cx: 0.75, cy: 0.56, rot: -0.3, op: on }),
+    ausgangslage: f({ zoom: 1.55, cx: 0.72, rot: -0.05, tx: -0.7, tz: -0.55, op: on }),
+    leistungen: f({ zoom: 1.55, cx: 0.72, rot: 0.35, tx: 0.75, tz: 0.35, op: on }),
+    nutzen: f({ zoom: 1.1, cx: 0.73, rot: 0.8, op: on }),
+    ablauf: f({ zoom: 0.62, cx: 0.5, cy: 0.52, rot: 1.2, op: mark }),
+  };
+}
+
+export const timelines: Record<StoryPage, Record<string, Frame>> = {
+  home,
+  websites: service(0),
+  marketing: service(1),
+  ki: service(2),
 };
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -49,6 +77,8 @@ export function mix(a: Frame, b: Frame, t: number): Frame {
     cy: lerp(a.cy, b.cy, t),
     rot: lerp(a.rot, b.rot, t),
     ty: lerp(a.ty, b.ty, t),
+    tx: lerp(a.tx, b.tx, t),
+    tz: lerp(a.tz, b.tz, t),
     op: [lerp(a.op[0], b.op[0], t), lerp(a.op[1], b.op[1], t), lerp(a.op[2], b.op[2], t)],
     link: lerp(a.link, b.link, t),
   };

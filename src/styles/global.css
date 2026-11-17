@@ -166,6 +166,8 @@ main:focus { outline: none; }
 .chapter-list-index { font: 400 11px/28px var(--font-mono); letter-spacing: .14em; color: var(--text-secondary); }
 .chapter-list .gv-step-text { max-width: none; margin-top: var(--space-1); }
 .chapter-text .note { margin: 0; }
+.chapter-list-text { margin: 0; font: 400 18px/26px var(--font-sans); letter-spacing: -.005em; color: var(--text); }
+.hero-fallback { margin-top: var(--space-7); }
 
 /* Kapitelmenü: nur mit Bühne, rechts im Seitenrand */
 .chapter-nav { display: none; }
@@ -186,6 +188,10 @@ main:focus { outline: none; }
   .story-on .chapter-step { min-height: 125vh; display: flex; align-items: center; padding-block: 0; }
   .story-on .chapter-step > .container { width: 100%; }
   .story-on .chapter-fallback { visibility: hidden; }
+  .story-on .hero-fallback { display: none; }
+  .story-on .service-hero h1 { max-width: 62%; }
+  .story-on .service-hero .hero-lower { grid-template-columns: 1fr; max-width: 520px; gap: var(--space-6); }
+  .story-on .service-hero .hero-actions-end { justify-content: flex-start; }
   .story-on .chapter-nav { position: fixed; right: var(--space-5); top: 50%; z-index: 4; display: grid; gap: var(--space-1); transform: translateY(-50%); opacity: 0; visibility: hidden; transition: opacity var(--gv-dur) var(--gv-ease), visibility var(--gv-dur); }
   .story-on .chapter-nav.is-visible { opacity: 1; visibility: visible; }
   html.story-on { scroll-behavior: smooth; }
